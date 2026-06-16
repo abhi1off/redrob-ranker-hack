@@ -1,11 +1,17 @@
 import argparse
+import json
+
 from pathlib import Path
-from src.disqualifier import remove_disqualified_candidates
+from disqualifier import remove_disqualified_candidates
 
 def build_candidates(candidates_path: Path):
-    print("starting build candidates...",candidates_path)
-    # Run Disqualifier, (Disqualifier is currently based on the JD, Should we change this methods position outside build?)
-    remove_disqualified_candidates(candidates_path)
+    print("starting build candidates...", candidates_path)
+    
+    with open("src/disqualifier_conditions.json", "r") as f:
+        config = json.load(f)
+    
+    remove_disqualified_candidates(str(candidates_path), config)
+    
 
 def rank_candidates(jd_path: Path, output_path: Path):
     print("starting rank candidates...")

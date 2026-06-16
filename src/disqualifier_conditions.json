@@ -33,13 +33,13 @@
           "field": "location",
           "operator": "NOT_IN",
           "value": [
-            "Noida",
-            "Pune",
-            "Hyderabad",
-            "Mumbai",
-            "Delhi NCR",
-            "Bengaluru",
-            "Bangalore"
+            "noida",
+            "pune",
+            "hyderabad",
+            "mumbai",
+            "delhi ncr",
+            "bangalore",
+            "bangaluru"
           ]
         },
         {
