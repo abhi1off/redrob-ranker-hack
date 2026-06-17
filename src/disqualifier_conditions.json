@@ -56,8 +56,17 @@
       "id": "non_coding_title",
       "field": "current_title",
       "operator": "REGEX",
-      "value": "(manager|executive)",
+      "value": "(customer support|accountant|hr|recruiter|talent acquisition)",
       "action": "DISQUALIFY"
+    },
+
+    {
+    "id": "conditional_non_coding_titles",
+    "field": "current_title",
+    "operator": "REGEX",
+    "value": "(manager|executive|business|content|marketing)",
+    "exceptions": ["engineer", "developer", "ml", "ai", "data"],
+    "action": "DISQUALIFY"
     },
 
     {

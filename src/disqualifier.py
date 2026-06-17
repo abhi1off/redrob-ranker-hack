@@ -40,7 +40,7 @@ def get_field(candidate, field):
 
     return mapping.get(field)
 
-def evaluate(value, operator, expected):
+def evaluate(value, operator, expected, rule=None):
 
     if value is None:
         return False
@@ -78,7 +78,12 @@ def evaluate(value, operator, expected):
         return value not in expected
 
     if operator == "REGEX":
-        return re.search(expected, str(value), re.I) is not None
+        if re.search(expected, str(value), re.I) is not None:
+            if rule and "exceptions" in rule:
+                if any(eng_word in str(value) for eng_word in rule["exceptions"]):
+                    return False
+            return True     
+    return False
 
     raise ValueError(f"Unsupported operator {operator}")
 
