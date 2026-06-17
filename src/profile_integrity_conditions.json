@@ -1,0 +1,256 @@
+{
+  "_comment": "ProfileVerifier rules — applied after hard disqualification, before ML pipeline.",
+  "_scoring": "Every candidate starts at 1.0. Each fired rule deducts its penalty. Floor is 0.0. Score feeds ML pipeline as a credibility multiplier.",
+
+  "technology_release_years": {
+    "_comment": "Used to catch certifications/skills dated before the technology existed.",
+    "LangChain": 2022,
+    "PyTorch": 2016,
+    "Hugging Face Transformers": 2019,
+    "Kubernetes": 2014,
+    "Docker": 2013,
+    "TensorFlow": 2015,
+    "Kafka": 2011,
+    "Airflow": 2015,
+    "FastAPI": 2018,
+    "Ray": 2017,
+    "FAISS": 2017,
+    "Pinecone": 2019,
+    "Weaviate": 2018,
+    "Qdrant": 2021,
+    "Milvus": 2019,
+    "OpenAI API": 2020,
+    "ChatGPT": 2022,
+    "LlamaIndex": 2022,
+    "Haystack": 2019,
+    "LoRA": 2021,
+    "Kubeflow": 2018,
+    "MLflow": 2018,
+    "Weights & Biases": 2018,
+    "dbt": 2016,
+    "Snowflake": 2012,
+    "Databricks": 2013,
+    "Spark": 2014,
+    "React": 2013,
+    "Angular": 2016,
+    "Vue": 2014,
+    "Flutter": 2017,
+    "Terraform": 2014
+  },
+
+  "integrity_rules": [
+
+    {
+      "id": "cert_impossible_date",
+      "description": "Certification dated before the technology was publicly released.",
+      "target": "certifications",
+      "check": "cert_year_before_tech_release",
+      "penalty": 0.20,
+      "severity": "high",
+      "flag_message": "Certification '{name}' dated {year} but technology released {release_year}."
+    },
+
+    {
+      "id": "skill_duration_exceeds_career",
+      "description": "A skill's duration_months exceeds the candidate's total career length.",
+      "target": "skills",
+      "check": "skill_duration_gt_total_career_months",
+      "penalty": 0.10,
+      "severity": "medium",
+      "per_occurrence": true,
+      "max_penalty": 0.20,
+      "flag_message": "Skill '{name}' claims {duration_months} months but total career is {career_months} months."
+    },
+
+    {
+      "id": "claimed_yoe_vs_history_gap",
+      "description": "Claimed years_of_experience significantly exceeds what career history accounts for.",
+      "target": "profile",
+      "check": "claimed_yoe_minus_computed_yoe_gt_threshold",
+      "threshold": 2.0,
+      "penalty": 0.15,
+      "severity": "high",
+      "flag_message": "Claims {claimed_yoe} yrs but career history accounts for only {computed_yoe} yrs."
+    },
+
+    {
+      "id": "experience_before_graduation",
+      "description": "Career history starts before the candidate's latest degree ended.",
+      "target": "education_vs_career",
+      "check": "career_start_before_last_degree_end",
+      "overlap_tolerance_months": 6,
+      "penalty": 0.10,
+      "severity": "medium",
+      "flag_message": "Career at '{company}' started {start_date}, but last degree ended {grad_year}."
+    },
+
+    {
+      "id": "degree_duration_too_short",
+      "description": "A degree completed in fewer years than standard (B.Tech/B.E. < 3.5 yrs, M.Tech < 1.5 yrs).",
+      "target": "education",
+      "check": "degree_duration_below_minimum",
+      "degree_minimums": {
+        "B.Tech": 3.5,
+        "B.E.": 3.5,
+        "M.Tech": 1.5,
+        "M.E.": 1.5,
+        "MBA": 1.5,
+        "M.Sc": 1.5,
+        "B.Sc": 2.5,
+        "Ph.D": 3.0
+      },
+      "penalty": 0.08,
+      "severity": "low",
+      "per_occurrence": true,
+      "max_penalty": 0.08,
+      "flag_message": "Degree '{degree}' from {institution} completed in {actual_years} yrs (minimum {min_years} yrs)."
+    },
+
+    {
+      "id": "overlapping_fulltime_degrees",
+      "description": "Two full-time degrees with overlapping timelines.",
+      "target": "education",
+      "check": "education_timeline_overlap",
+      "penalty": 0.10,
+      "severity": "medium",
+      "flag_message": "'{degree_a}' ({end_a}) overlaps with '{degree_b}' ({start_b})."
+    },
+
+    {
+      "id": "assessment_contradicts_proficiency",
+      "description": "Skill assessment score is low but proficiency is claimed advanced or expert.",
+      "target": "skills_vs_assessments",
+      "check": "assessment_score_below_threshold_for_proficiency",
+      "thresholds": {
+        "advanced": 65,
+        "expert": 75
+      },
+      "penalty": 0.15,
+      "severity": "high",
+      "per_occurrence": true,
+      "max_penalty": 0.30,
+      "flag_message": "Skill '{name}' claimed {proficiency} but assessment score is {score:.1f} (threshold {threshold})."
+    },
+
+    {
+      "id": "skill_duration_vs_company_tenure",
+      "description": "Skill duration_months exceeds tenure at companies where it could plausibly have been used.",
+      "target": "skills",
+      "check": "skill_duration_gt_relevant_company_tenure",
+      "tolerance_months": 6,
+      "penalty": 0.08,
+      "severity": "low",
+      "per_occurrence": true,
+      "max_penalty": 0.16,
+      "flag_message": "Skill '{name}' claims {duration_months} months but max relevant tenure is {max_tenure} months."
+    },
+
+    {
+      "id": "headline_title_mismatch",
+      "description": "Current title in profile contradicts the career_history current role title significantly.",
+      "target": "profile_vs_career",
+      "check": "headline_current_title_vs_career_history_title_mismatch",
+      "penalty": 0.05,
+      "severity": "low",
+      "flag_message": "Profile title '{profile_title}' doesn't match current role title '{history_title}'."
+    },
+
+    {
+    "id": "bot_signature_summary",
+    "description": "Summary contains platform template phrases — graduated by count.",
+    "target": "profile_summary",
+    "check": "bot_phrase_count_in_summary",
+    "thresholds": {
+      "1": 0.05,
+      "2": 0.12,
+      "3": 0.25
+    },
+    "max_penalty": 0.25,
+    "severity": "medium",
+    "flag_message": "Summary contains {count} platform template phrase(s)."
+  }
+
+  ],
+
+  "credibility_rules": [
+
+    {
+      "id": "unverified_contact",
+      "description": "Neither email nor phone is verified — profile authenticity unconfirmed.",
+      "target": "redrob_signals",
+      "check": "verified_email_false_and_verified_phone_false",
+      "penalty": 0.10,
+      "severity": "medium",
+      "flag_message": "Neither email nor phone verified."
+    },
+
+    {
+      "id": "zero_endorsements_advanced_skill",
+      "description": "Skill claimed as advanced/expert but has zero endorsements and no assessment score.",
+      "target": "skills",
+      "check": "advanced_skill_zero_endorsements_no_assessment",
+      "penalty": 0.05,
+      "severity": "low",
+      "per_occurrence": true,
+      "max_penalty": 0.10,
+      "flag_message": "Skill '{name}' claimed {proficiency} with 0 endorsements and no assessment."
+    },
+
+    {
+      "id": "all_skills_same_proficiency",
+      "description": "All skills listed at the same proficiency level — likely bulk-fill, not genuine self-assessment.",
+      "target": "skills",
+      "check": "all_skills_identical_proficiency",
+      "min_skill_count": 5,
+      "penalty": 0.08,
+      "severity": "medium",
+      "flag_message": "All {count} skills listed as '{proficiency}' — possible bulk profile fill."
+    },
+
+    {
+      "id": "summary_vs_title_domain_mismatch",
+      "description": "Summary describes a completely different domain than current title suggests.",
+      "target": "profile",
+      "check": "summary_title_domain_embedding_distance",
+      "cosine_distance_threshold": 0.6,
+      "penalty": 0.08,
+      "severity": "medium",
+      "flag_message": "Summary domain appears inconsistent with current title '{current_title}'."
+    },
+
+    {
+      "id": "low_profile_completeness",
+      "description": "Profile completeness score is very low, limiting signal reliability.",
+      "target": "redrob_signals",
+      "check": "profile_completeness_below_threshold",
+      "threshold": 40,
+      "penalty": 0.05,
+      "severity": "low",
+      "flag_message": "Profile completeness is {score}% (threshold {threshold}%)."
+    },
+
+    {
+      "id": "high_application_volume_low_response",
+      "description": "Submitting many applications but very low recruiter response — possible spray-and-pray.",
+      "target": "redrob_signals",
+      "check": "applications_gt_threshold_and_response_rate_lt_threshold",
+      "application_threshold": 15,
+      "response_rate_threshold": 0.20,
+      "penalty": 0.05,
+      "severity": "low",
+      "flag_message": "{apps} applications in 30d with only {rr:.0%} recruiter response rate."
+    },
+
+    {
+      "id": "single_company_entire_career",
+      "description": "Entire career at one company — limited exposure signal, not a disqualifier but noted.",
+      "target": "career_history",
+      "check": "single_company_career",
+      "min_years": 3,
+      "penalty": 0.03,
+      "severity": "info",
+      "flag_message": "Entire {years} yr career at single company '{company}'."
+    }
+
+  ]
+}
