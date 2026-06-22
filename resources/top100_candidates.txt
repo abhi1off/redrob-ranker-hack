@@ -1,0 +1,707 @@
+
+================================================================================
+  TOP 100 CANDIDATES
+================================================================================
+
+#  1  CAND_0099806  →  score: 0.5724  (penalty: ×1.00)
+     Components — skill: 0.47  exp: 0.98  loc: 0.70  text: 0.19
+     Experience — 4.6 yrs total | 4.6 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (expert, 89mo), Weaviate (advanced, 27mo), Hybrid Search (intermediate, 12mo), Python (advanced, 19mo), Ranking Evaluation (intermediate, 12mo) +3 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+#  2  CAND_0008978  →  score: 0.5260  (penalty: ×1.00)
+     Components — skill: 0.42  exp: 1.00  loc: 0.60  text: 0.07
+     Experience — 6.7 yrs total | 4.75 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 52mo), Milvus (advanced, 57mo), Python (advanced, 38mo), Fine-tuning LLMs (advanced, 55mo), Learning to Rank (intermediate, 12mo)
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 90d high — beyond buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+#  3  CAND_0079284  →  score: 0.5250  (penalty: ×1.00)
+     Components — skill: 0.33  exp: 0.99  loc: 0.65  text: 0.19
+     Experience — 4.9 yrs total | 4.9 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 12mo), Qdrant (expert, 59mo), Hybrid Search (intermediate, 12mo), Python (advanced, 55mo), Ranking Evaluation (intermediate, 12mo) +4 more
+     Location       — In acceptable city (Hyderabad, Telangana) | Notice period 30d within ideal <=30d | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+#  4  CAND_0012957  →  score: 0.5231  (penalty: ×1.00)
+     Components — skill: 0.53  exp: 0.99  loc: 0.00  text: 0.15
+     Experience — 4.9 yrs total | 4.9 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (expert, 44mo), Qdrant (advanced, 37mo), Hybrid Search (intermediate, 12mo), Python (expert, 91mo), Ranking Evaluation (intermediate, 12mo) +3 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 120d very high — unplaceable within buyout window | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+#  5  CAND_0098217  →  score: 0.5157  (penalty: ×1.00)
+     Components — skill: 0.34  exp: 1.00  loc: 0.85  text: 0.05
+     Experience — 6.4 yrs total | 4.5 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Pinecone (advanced, 53mo), Python (advanced, 53mo), PEFT (advanced, 54mo), Learning to Rank (intermediate, 34mo)
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 45d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+#  6  CAND_0030348  →  score: 0.5138  (penalty: ×1.00)
+     Components — skill: 0.27  exp: 0.97  loc: 0.85  text: 0.17
+     Experience — 4.5 yrs total | 4.5 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 35mo), Vector Databases (intermediate, 12mo), Hybrid Search (intermediate, 12mo), Python (expert, 94mo), Ranking Evaluation (intermediate, 12mo) +1 more
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 45d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+#  7  CAND_0054394  →  score: 0.5110  (penalty: ×1.00)
+     Components — skill: 0.32  exp: 0.95  loc: 0.80  text: 0.15
+     Experience — 4.1 yrs total | 4.1 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (expert, 71mo), Vector Databases (intermediate, 12mo), Python (advanced, 95mo), Ranking Evaluation (intermediate, 12mo), BM25 (intermediate, 12mo) +2 more
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 30d within ideal <=30d | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+#  8  CAND_0096142  →  score: 0.5087  (penalty: ×1.00)
+     Components — skill: 0.41  exp: 0.94  loc: 0.35  text: 0.20
+     Experience — 5.0 yrs total | 5.0 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 12mo), Pinecone (expert, 62mo), Python (expert, 72mo), Ranking Evaluation (intermediate, 12mo), BM25 (expert, 69mo) +2 more
+     Location       — In acceptable city (Hyderabad, Telangana) | Notice period 120d very high — unplaceable within buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+#  9  CAND_0086022  →  score: 0.5070  (penalty: ×1.00)
+     Components — skill: 0.33  exp: 0.84  loc: 0.70  text: 0.28
+     Experience — 5.3 yrs total | 5.3 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (expert, 71mo), Vector Databases (intermediate, 12mo), Hybrid Search (intermediate, 12mo), Python (advanced, 94mo), Ranking Evaluation (intermediate, 12mo) +5 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 0d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 10  CAND_0077337  →  score: 0.5066  (penalty: ×1.00)
+     Components — skill: 0.39  exp: 0.88  loc: 0.35  text: 0.29
+     Experience — 7.0 yrs total | 5.5 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 12mo), Pinecone (advanced, 24mo), Hybrid Search (intermediate, 12mo), Python (expert, 82mo), Ranking Evaluation (intermediate, 12mo) +4 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 60d above ideal but within buyout/scope range | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 11  CAND_0051004  →  score: 0.5065  (penalty: ×1.00)
+     Components — skill: 0.32  exp: 0.98  loc: 0.70  text: 0.12
+     Experience — 4.7 yrs total | 4.7 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 57mo), Vector Databases (intermediate, 12mo), Hybrid Search (intermediate, 12mo), Python (advanced, 51mo), Ranking Evaluation (intermediate, 12mo) +2 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 15d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 12  CAND_0064904  →  score: 0.4995  (penalty: ×1.00)
+     Components — skill: 0.39  exp: 0.99  loc: 0.25  text: 0.15
+     Experience — 4.9 yrs total | 4.9 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (expert, 74mo), Weaviate (advanced, 33mo), Hybrid Search (intermediate, 12mo), Python (expert, 52mo), Ranking Evaluation (intermediate, 12mo) +1 more
+     Location       — In acceptable city (Hyderabad, Telangana) | Notice period 90d high — beyond buyout window | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 13  CAND_0008295  →  score: 0.4994  (penalty: ×1.00)
+     Components — skill: 0.33  exp: 1.00  loc: 0.65  text: 0.07
+     Experience — 6.5 yrs total | 4.75 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Weaviate (intermediate, 35mo), Python (advanced, 53mo), BM25 (advanced, 57mo), QLoRA (advanced, 19mo), Learning to Rank (intermediate, 12mo)
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 45d above ideal but within buyout/scope range | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 14  CAND_0018888  →  score: 0.4978  (penalty: ×1.00)
+     Components — skill: 0.23  exp: 1.00  loc: 1.00  text: 0.06
+     Experience — 6.5 yrs total | 4.25 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — FAISS (advanced, 49mo), Python (advanced, 45mo), Learning to Rank (intermediate, 12mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo)
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 15  CAND_0046459  →  score: 0.4942  (penalty: ×1.00)
+     Components — skill: 0.28  exp: 0.92  loc: 1.00  text: 0.08
+     Experience — 4.5 yrs total | 3.42 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Qdrant (advanced, 26mo), Python (advanced, 20mo), BM25 (advanced, 41mo)
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 16  CAND_0060072  →  score: 0.4933  (penalty: ×1.00)
+     Components — skill: 0.52  exp: 0.80  loc: 0.10  text: 0.24
+     Experience — 5.7 yrs total | 5.7 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (expert, 54mo), Pinecone (expert, 65mo), Hybrid Search (intermediate, 12mo), Python (advanced, 60mo), Ranking Evaluation (intermediate, 12mo) +4 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 90d high — beyond buyout window | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 17  CAND_0058688  →  score: 0.4933  (penalty: ×1.00)
+     Components — skill: 0.43  exp: 0.78  loc: 0.70  text: 0.15
+     Experience — 6.7 yrs total | 6.7 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (expert, 69mo), Milvus (expert, 86mo), Python (advanced, 57mo), Ranking Evaluation (intermediate, 12mo), QLoRA (advanced, 30mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 15d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 18  CAND_0007411  →  score: 0.4927  (penalty: ×1.00)
+     Components — skill: 0.34  exp: 0.76  loc: 0.70  text: 0.30
+     Experience — 8.0 yrs total | 7.17 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 12mo), Vector Databases (intermediate, 12mo), Hybrid Search (intermediate, 12mo), Python (advanced, 73mo), Ranking Evaluation (intermediate, 12mo) +4 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 15d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 19  CAND_0056442  →  score: 0.4884  (penalty: ×1.00)
+     Components — skill: 0.41  exp: 1.00  loc: 0.30  text: 0.06
+     Experience — 6.2 yrs total | 4.42 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 53mo), Pinecone (intermediate, 32mo), Python (advanced, 24mo), QLoRA (advanced, 50mo), Learning to Rank (advanced, 21mo) +1 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 90d high — beyond buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 20  CAND_0066999  →  score: 0.4869  (penalty: ×1.00)
+     Components — skill: 0.35  exp: 0.94  loc: 0.50  text: 0.14
+     Experience — 5.9 yrs total | 4.5 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 32mo), Pinecone (advanced, 31mo), Ranking Evaluation (intermediate, 12mo), BM25 (expert, 53mo), Learning to Rank (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 15d within ideal <=30d | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 21  CAND_0065277  →  score: 0.4865  (penalty: ×1.00)
+     Components — skill: 0.27  exp: 1.00  loc: 0.70  text: 0.09
+     Experience — 6.3 yrs total | 4.75 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Milvus (advanced, 25mo), Python (advanced, 57mo), Fine-tuning LLMs (advanced, 45mo)
+     Location       — In acceptable city (Mumbai, Maharashtra) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 22  CAND_0015057  →  score: 0.4833  (penalty: ×1.00)
+     Components — skill: 0.37  exp: 0.98  loc: 0.40  text: 0.08
+     Experience — 4.6 yrs total | 4.6 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 30mo), Qdrant (intermediate, 35mo), Python (advanced, 32mo), QLoRA (intermediate, 33mo), Learning to Rank (intermediate, 12mo) +1 more
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 90d high — beyond buyout window | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 23  CAND_0037672  →  score: 0.4832  (penalty: ×1.00)
+     Components — skill: 0.23  exp: 1.00  loc: 0.85  text: 0.06
+     Experience — 6.5 yrs total | 4.33 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 22mo), Pinecone (intermediate, 32mo), Python (intermediate, 12mo), Ranking Evaluation (intermediate, 12mo), Fine-tuning LLMs (intermediate, 12mo) +3 more
+     Location       — In acceptable city (Mumbai, Maharashtra) | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 24  CAND_0099401  →  score: 0.4829  (penalty: ×1.00)
+     Components — skill: 0.46  exp: 0.85  loc: 0.30  text: 0.15
+     Experience — 7.7 yrs total | 5.92 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (expert, 63mo), Qdrant (expert, 71mo), Python (advanced, 40mo), Ranking Evaluation (intermediate, 12mo), BM25 (advanced, 36mo) +1 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 90d high — beyond buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 25  CAND_0094564  →  score: 0.4819  (penalty: ×1.00)
+     Components — skill: 0.28  exp: 0.93  loc: 0.85  text: 0.07
+     Experience — 5.1 yrs total | 3.92 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 36mo), OpenSearch (advanced, 47mo), Python (intermediate, 19mo), Ranking Evaluation (intermediate, 12mo), Fine-tuning LLMs (intermediate, 12mo) +3 more
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 26  CAND_0045475  →  score: 0.4804  (penalty: ×1.00)
+     Components — skill: 0.31  exp: 0.99  loc: 0.55  text: 0.08
+     Experience — 4.9 yrs total | 4.9 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Pinecone (advanced, 46mo), Python (advanced, 33mo), BM25 (intermediate, 15mo), QLoRA (advanced, 59mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 27  CAND_0032179  →  score: 0.4802  (penalty: ×1.00)
+     Components — skill: 0.35  exp: 1.00  loc: 0.35  text: 0.09
+     Experience — 6.4 yrs total | 4.67 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 29mo), Weaviate (advanced, 45mo), Python (intermediate, 10mo), Learning to Rank (advanced, 56mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 60d above ideal but within buyout/scope range | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 28  CAND_0073620  →  score: 0.4801  (penalty: ×1.00)
+     Components — skill: 0.31  exp: 0.96  loc: 0.60  text: 0.09
+     Experience — 4.4 yrs total | 4.4 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 9mo), FAISS (advanced, 42mo), Python (advanced, 23mo), LoRA (advanced, 53mo)
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 90d high — beyond buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 29  CAND_0008239  →  score: 0.4799  (penalty: ×1.00)
+     Components — skill: 0.31  exp: 0.94  loc: 0.50  text: 0.16
+     Experience — 4.0 yrs total | 4.0 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Weaviate (advanced, 33mo), Python (advanced, 39mo), Ranking Evaluation (intermediate, 12mo), PEFT (advanced, 27mo), Learning to Rank (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 15d within ideal <=30d | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 30  CAND_0000031  →  score: 0.4779  (penalty: ×1.00)
+     Components — skill: 0.38  exp: 0.84  loc: 0.50  text: 0.17
+     Experience — 6.0 yrs total | 6.0 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (expert, 60mo), Pinecone (expert, 88mo), Hybrid Search (intermediate, 12mo), Python (advanced, 36mo), Ranking Evaluation (intermediate, 12mo) +3 more
+     Location       — In acceptable city (Hyderabad, Telangana) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 31  CAND_0011065  →  score: 0.4776  (penalty: ×1.00)
+     Components — skill: 0.36  exp: 0.94  loc: 0.50  text: 0.08
+     Experience — 5.4 yrs total | 4.17 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 22mo), Qdrant (advanced, 50mo), Python (advanced, 41mo), Fine-tuning LLMs (advanced, 42mo), Learning to Rank (intermediate, 12mo) +1 more
+     Location       — In acceptable city (Mumbai, Maharashtra) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 32  CAND_0017093  →  score: 0.4774  (penalty: ×1.00)
+     Components — skill: 0.26  exp: 0.94  loc: 0.85  text: 0.07
+     Experience — 5.9 yrs total | 4.5 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 29mo), Python (intermediate, 12mo), BM25 (advanced, 41mo), Learning to Rank (advanced, 22mo)
+     Location       — In acceptable city (Hyderabad, Telangana) | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 33  CAND_0026532  →  score: 0.4770  (penalty: ×1.00)
+     Components — skill: 0.32  exp: 0.99  loc: 0.30  text: 0.16
+     Experience — 4.8 yrs total | 4.8 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (expert, 44mo), Vector Databases (intermediate, 12mo), Python (advanced, 37mo), Ranking Evaluation (intermediate, 12mo), BM25 (intermediate, 12mo) +2 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 90d high — beyond buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 34  CAND_0094728  →  score: 0.4764  (penalty: ×1.00)
+     Components — skill: 0.26  exp: 1.00  loc: 0.70  text: 0.06
+     Experience — 6.5 yrs total | 4.42 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 13mo), Qdrant (intermediate, 27mo), Python (advanced, 23mo), BM25 (advanced, 53mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 35  CAND_0006418  →  score: 0.4761  (penalty: ×1.00)
+     Components — skill: 0.43  exp: 0.80  loc: 0.35  text: 0.20
+     Experience — 5.7 yrs total | 5.7 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (expert, 71mo), Weaviate (expert, 93mo), Python (advanced, 48mo), Ranking Evaluation (intermediate, 12mo), Learning to Rank (expert, 53mo) +1 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 60d above ideal but within buyout/scope range | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 36  CAND_0030946  →  score: 0.4742  (penalty: ×1.00)
+     Components — skill: 0.30  exp: 1.00  loc: 0.50  text: 0.08
+     Experience — 6.7 yrs total | 4.5 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 54mo), OpenSearch (intermediate, 34mo), Python (intermediate, 19mo), BM25 (intermediate, 21mo), Learning to Rank (intermediate, 15mo)
+     Location       — In acceptable city (Mumbai, Maharashtra) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 37  CAND_0071380  →  score: 0.4738  (penalty: ×1.00)
+     Components — skill: 0.17  exp: 0.99  loc: 1.00  text: 0.07
+     Experience — 4.8 yrs total | 4.67 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — FAISS (advanced, 56mo), Python (intermediate, 24mo), Distributed Systems (intermediate, 12mo)
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 38  CAND_0011162  →  score: 0.4732  (penalty: ×1.00)
+     Components — skill: 0.47  exp: 0.80  loc: 0.30  text: 0.17
+     Experience — 5.8 yrs total | 5.8 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (expert, 69mo), Pinecone (expert, 78mo), Hybrid Search (intermediate, 12mo), Python (advanced, 37mo), Ranking Evaluation (intermediate, 12mo) +4 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 90d high — beyond buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 39  CAND_0015967  →  score: 0.4725  (penalty: ×1.00)
+     Components — skill: 0.29  exp: 0.89  loc: 0.85  text: 0.07
+     Experience — 5.4 yrs total | 3.42 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 30mo), Pinecone (intermediate, 21mo), Python (advanced, 42mo), QLoRA (intermediate, 36mo), Learning to Rank (intermediate, 12mo)
+     Location       — In acceptable city (Hyderabad, Telangana) | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 40  CAND_0064888  →  score: 0.4704  (penalty: ×1.00)
+     Components — skill: 0.35  exp: 0.94  loc: 0.50  text: 0.07
+     Experience — 5.8 yrs total | 4.08 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 30mo), Elasticsearch (intermediate, 32mo), Python (advanced, 49mo), Fine-tuning LLMs (intermediate, 18mo), Learning to Rank (intermediate, 28mo) +1 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 30d within ideal <=30d | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 41  CAND_0040946  →  score: 0.4701  (penalty: ×1.00)
+     Components — skill: 0.21  exp: 1.00  loc: 0.85  text: 0.05
+     Experience — 6.0 yrs total | 4.58 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Qdrant (advanced, 23mo), Python (advanced, 29mo), Learning to Rank (intermediate, 15mo)
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 45d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 42  CAND_0074469  →  score: 0.4649  (penalty: ×1.00)
+     Components — skill: 0.19  exp: 0.94  loc: 1.00  text: 0.06
+     Experience — 5.1 yrs total | 4.17 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 50mo), Python (advanced, 21mo), Fine-tuning LLMs (intermediate, 12mo), Distributed Systems (intermediate, 12mo)
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 43  CAND_0047996  →  score: 0.4637  (penalty: ×1.00)
+     Components — skill: 0.23  exp: 1.00  loc: 0.70  text: 0.06
+     Experience — 7.2 yrs total | 4.92 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Pinecone (intermediate, 29mo), Python (intermediate, 36mo), BM25 (advanced, 59mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 44  CAND_0036437  →  score: 0.4627  (penalty: ×1.00)
+     Components — skill: 0.24  exp: 0.99  loc: 0.50  text: 0.12
+     Experience — 4.8 yrs total | 4.8 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Weaviate (expert, 73mo), Python (advanced, 93mo), Ranking Evaluation (intermediate, 12mo), Learning to Rank (intermediate, 12mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 30d within ideal <=30d | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 45  CAND_0041610  →  score: 0.4621  (penalty: ×1.00)
+     Components — skill: 0.40  exp: 0.78  loc: 0.50  text: 0.15
+     Experience — 6.7 yrs total | 6.7 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 55mo), Vector Databases (intermediate, 12mo), Hybrid Search (intermediate, 12mo), Python (advanced, 85mo), Ranking Evaluation (intermediate, 12mo) +4 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 30d within ideal <=30d | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 46  CAND_0054546  →  score: 0.4617  (penalty: ×1.00)
+     Components — skill: 0.31  exp: 0.99  loc: 0.40  text: 0.06
+     Experience — 4.9 yrs total | 4.17 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Qdrant (advanced, 42mo), Python (intermediate, 9mo), BM25 (advanced, 24mo), LoRA (advanced, 50mo), Learning to Rank (intermediate, 26mo)
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 90d high — beyond buyout window | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 47  CAND_0078066  →  score: 0.4615  (penalty: ×1.00)
+     Components — skill: 0.18  exp: 1.00  loc: 0.85  text: 0.06
+     Experience — 6.7 yrs total | 4.75 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Qdrant (intermediate, 13mo), Python (intermediate, 23mo), BM25 (intermediate, 30mo), Fine-tuning LLMs (intermediate, 12mo), Learning to Rank (intermediate, 25mo) +2 more
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 48  CAND_0027340  →  score: 0.4611  (penalty: ×1.00)
+     Components — skill: 0.21  exp: 0.97  loc: 0.80  text: 0.07
+     Experience — 9.5 yrs total | 4.42 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Qdrant (advanced, 53mo), BM25 (advanced, 46mo), Distributed Systems (intermediate, 12mo)
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 30d within ideal <=30d | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 49  CAND_0042506  →  score: 0.4606  (penalty: ×1.00)
+     Components — skill: 0.19  exp: 0.95  loc: 0.65  text: 0.17
+     Experience — 4.2 yrs total | 4.2 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 12mo), Vector Databases (intermediate, 12mo), Python (advanced, 83mo), Ranking Evaluation (intermediate, 12mo), Fine-tuning LLMs (expert, 53mo) +1 more
+     Location       — In acceptable city (Mumbai, Maharashtra) | Notice period 15d within ideal <=30d | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 50  CAND_0046525  →  score: 0.4602  (penalty: ×1.00)
+     Components — skill: 0.15  exp: 0.83  loc: 0.85  text: 0.30
+     Experience — 6.1 yrs total | 6.1 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 12mo), Vector Databases (intermediate, 12mo), Hybrid Search (intermediate, 12mo), Python (advanced, 74mo), Ranking Evaluation (intermediate, 12mo) +4 more
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 51  CAND_0095213  →  score: 0.4599  (penalty: ×1.00)
+     Components — skill: 0.31  exp: 0.94  loc: 0.55  text: 0.06
+     Experience — 5.1 yrs total | 4.83 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Pinecone (advanced, 58mo), Python (advanced, 27mo), LoRA (advanced, 31mo), Learning to Rank (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 52  CAND_0042029  →  score: 0.4586  (penalty: ×1.00)
+     Components — skill: 0.32  exp: 0.80  loc: 0.55  text: 0.21
+     Experience — 6.5 yrs total | 6.5 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (expert, 54mo), Vector Databases (intermediate, 12mo), Python (advanced, 90mo), Ranking Evaluation (intermediate, 12mo), Fine-tuning LLMs (intermediate, 12mo) +2 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 45d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 53  CAND_0098540  →  score: 0.4579  (penalty: ×1.00)
+     Components — skill: 0.28  exp: 0.95  loc: 0.60  text: 0.07
+     Experience — 4.1 yrs total | 4.1 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 55mo), Python (advanced, 40mo), BM25 (intermediate, 28mo), Fine-tuning LLMs (intermediate, 12mo), Distributed Systems (intermediate, 12mo)
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 90d high — beyond buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 54  CAND_0039684  →  score: 0.4579  (penalty: ×1.00)
+     Components — skill: 0.15  exp: 0.96  loc: 1.00  text: 0.07
+     Experience — 4.3 yrs total | 4.17 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Qdrant (intermediate, 16mo), Python (advanced, 50mo), Fine-tuning LLMs (intermediate, 12mo), Distributed Systems (intermediate, 12mo)
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 55  CAND_0094358  →  score: 0.4575  (penalty: ×1.00)
+     Components — skill: 0.31  exp: 0.95  loc: 0.50  text: 0.06
+     Experience — 4.1 yrs total | 4.1 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Qdrant (advanced, 42mo), Python (advanced, 46mo), BM25 (advanced, 50mo), Learning to Rank (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 30d within ideal <=30d | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 56  CAND_0010541  →  score: 0.4572  (penalty: ×1.00)
+     Components — skill: 0.32  exp: 0.91  loc: 0.50  text: 0.08
+     Experience — 6.2 yrs total | 2.92 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Pinecone (advanced, 27mo), Python (intermediate, 32mo), BM25 (advanced, 25mo), LoRA (intermediate, 31mo)
+     Location       — In acceptable city (Hyderabad, Telangana) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 57  CAND_0033520  →  score: 0.4570  (penalty: ×1.00)
+     Components — skill: 0.21  exp: 1.00  loc: 0.70  text: 0.06
+     Experience — 6.5 yrs total | 4.67 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — FAISS (intermediate, 13mo), Python (advanced, 26mo), Ranking Evaluation (intermediate, 12mo), BM25 (advanced, 56mo), Fine-tuning LLMs (intermediate, 12mo) +3 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 58  CAND_0062413  →  score: 0.4563  (penalty: ×1.00)
+     Components — skill: 0.20  exp: 1.00  loc: 0.70  text: 0.06
+     Experience — 6.6 yrs total | 4.25 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Pinecone (intermediate, 19mo), Python (intermediate, 12mo), BM25 (advanced, 49mo), Learning to Rank (advanced, 47mo)
+     Location       — In acceptable city (Mumbai, Maharashtra) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 59  CAND_0010984  →  score: 0.4554  (penalty: ×1.00)
+     Components — skill: 0.31  exp: 0.95  loc: 0.50  text: 0.06
+     Experience — 4.1 yrs total | 4.1 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Pinecone (advanced, 53mo), Python (advanced, 38mo), Ranking Evaluation (intermediate, 12mo), Fine-tuning LLMs (intermediate, 12mo), Learning to Rank (advanced, 33mo) +1 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 30d within ideal <=30d | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 60  CAND_0044882  →  score: 0.4554  (penalty: ×1.00)
+     Components — skill: 0.23  exp: 1.00  loc: 0.55  text: 0.08
+     Experience — 6.5 yrs total | 4.67 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Elasticsearch (advanced, 32mo), Python (advanced, 49mo), Fine-tuning LLMs (intermediate, 12mo), Distributed Systems (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 61  CAND_0000354  →  score: 0.4553  (penalty: ×1.00)
+     Components — skill: 0.19  exp: 1.00  loc: 0.70  text: 0.07
+     Experience — 6.3 yrs total | 4.92 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Python (advanced, 48mo), Ranking Evaluation (intermediate, 12mo), BM25 (advanced, 59mo), Fine-tuning LLMs (intermediate, 12mo), Learning to Rank (intermediate, 12mo) +1 more
+     Location       — In acceptable city (Hyderabad, Telangana) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 62  CAND_0039070  →  score: 0.4552  (penalty: ×1.00)
+     Components — skill: 0.27  exp: 0.97  loc: 0.55  text: 0.07
+     Experience — 6.6 yrs total | 3.58 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 33mo), OpenSearch (advanced, 43mo), Python (beginner, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 63  CAND_0076482  →  score: 0.4551  (penalty: ×1.00)
+     Components — skill: 0.26  exp: 0.99  loc: 0.55  text: 0.06
+     Experience — 6.6 yrs total | 3.83 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 18mo), Pinecone (advanced, 24mo), Python (advanced, 26mo), QLoRA (intermediate, 13mo), Learning to Rank (intermediate, 12mo) +1 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 64  CAND_0066248  →  score: 0.4548  (penalty: ×1.00)
+     Components — skill: 0.21  exp: 1.00  loc: 0.65  text: 0.07
+     Experience — 6.4 yrs total | 4.58 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Elasticsearch (intermediate, 9mo), Python (advanced, 50mo), BM25 (advanced, 55mo), Fine-tuning LLMs (intermediate, 12mo), Distributed Systems (intermediate, 12mo)
+     Location       — In acceptable city (Mumbai, Maharashtra) | Notice period 30d within ideal <=30d | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 65  CAND_0060835  →  score: 0.4544  (penalty: ×1.00)
+     Components — skill: 0.30  exp: 1.00  loc: 0.30  text: 0.08
+     Experience — 6.6 yrs total | 4.42 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 53mo), Weaviate (intermediate, 34mo), Python (advanced, 32mo), Learning to Rank (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 90d high — beyond buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 66  CAND_0078492  →  score: 0.4539  (penalty: ×1.00)
+     Components — skill: 0.27  exp: 0.85  loc: 0.70  text: 0.14
+     Experience — 5.1 yrs total | 5.1 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 12mo), Vector Databases (intermediate, 12mo), Python (advanced, 92mo), Ranking Evaluation (intermediate, 12mo), BM25 (advanced, 48mo) +2 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 67  CAND_0037980  →  score: 0.4533  (penalty: ×1.00)
+     Components — skill: 0.25  exp: 0.70  loc: 0.70  text: 0.35
+     Experience — 9.0 yrs total | 7.67 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Python (advanced, 63mo), Ranking Evaluation (intermediate, 12mo), BM25 (expert, 92mo), LoRA (expert, 75mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 0d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 68  CAND_0094891  →  score: 0.4518  (penalty: ×1.00)
+     Components — skill: 0.19  exp: 0.94  loc: 0.85  text: 0.07
+     Experience — 5.8 yrs total | 4.0 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Milvus (advanced, 48mo), Python (intermediate, 32mo), Fine-tuning LLMs (intermediate, 12mo), Distributed Systems (intermediate, 12mo)
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 69  CAND_0076831  →  score: 0.4517  (penalty: ×1.00)
+     Components — skill: 0.27  exp: 0.94  loc: 0.30  text: 0.18
+     Experience — 4.0 yrs total | 4.0 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 12mo), Vector Databases (intermediate, 12mo), Python (advanced, 40mo), Ranking Evaluation (intermediate, 12mo), BM25 (advanced, 46mo) +3 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 90d high — beyond buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 70  CAND_0064664  →  score: 0.4515  (penalty: ×1.00)
+     Components — skill: 0.25  exp: 0.96  loc: 0.55  text: 0.08
+     Experience — 4.4 yrs total | 4.4 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Milvus (intermediate, 28mo), Python (advanced, 49mo), QLoRA (advanced, 39mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 45d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 71  CAND_0070398  →  score: 0.4510  (penalty: ×1.00)
+     Components — skill: 0.47  exp: 0.76  loc: 0.20  text: 0.15
+     Experience — 7.2 yrs total | 7.2 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (expert, 92mo), Vector Databases (intermediate, 12mo), Python (expert, 40mo), Ranking Evaluation (intermediate, 12mo), BM25 (expert, 71mo) +3 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 120d very high — unplaceable within buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 72  CAND_0033408  →  score: 0.4507  (penalty: ×1.00)
+     Components — skill: 0.24  exp: 1.00  loc: 0.45  text: 0.08
+     Experience — 7.0 yrs total | 4.75 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 57mo), OpenSearch (intermediate, 29mo), Python (intermediate, 12mo), Ranking Evaluation (intermediate, 12mo), Fine-tuning LLMs (intermediate, 12mo) +3 more
+     Location       — In acceptable city (Mumbai, Maharashtra) | Notice period 90d high — beyond buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 73  CAND_0024620  →  score: 0.4502  (penalty: ×1.00)
+     Components — skill: 0.41  exp: 0.79  loc: 0.35  text: 0.14
+     Experience — 5.9 yrs total | 5.9 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 12mo), Elasticsearch (expert, 42mo), Hybrid Search (intermediate, 12mo), Python (expert, 53mo), Ranking Evaluation (intermediate, 12mo) +3 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 45d above ideal but within buyout/scope range | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 74  CAND_0066535  →  score: 0.4495  (penalty: ×1.00)
+     Components — skill: 0.23  exp: 0.99  loc: 0.55  text: 0.07
+     Experience — 4.8 yrs total | 4.58 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — FAISS (advanced, 55mo), Python (advanced, 41mo), Fine-tuning LLMs (intermediate, 12mo), Distributed Systems (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 75  CAND_0029789  →  score: 0.4493  (penalty: ×1.00)
+     Components — skill: 0.23  exp: 1.00  loc: 0.55  text: 0.05
+     Experience — 7.1 yrs total | 4.75 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Elasticsearch (advanced, 57mo), Python (advanced, 45mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 76  CAND_0035879  →  score: 0.4484  (penalty: ×1.00)
+     Components — skill: 0.25  exp: 0.97  loc: 0.50  text: 0.07
+     Experience — 4.5 yrs total | 4.5 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Pinecone (intermediate, 27mo), Python (advanced, 52mo), BM25 (intermediate, 32mo), Learning to Rank (intermediate, 12mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo)
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 120d very high — unplaceable within buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 77  CAND_0091745  →  score: 0.4480  (penalty: ×1.00)
+     Components — skill: 0.20  exp: 0.94  loc: 0.80  text: 0.07
+     Experience — 5.9 yrs total | 5.0 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (intermediate, 14mo), Python (advanced, 30mo), Fine-tuning LLMs (advanced, 30mo), Learning to Rank (intermediate, 12mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo)
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 30d within ideal <=30d | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 78  CAND_0069232  →  score: 0.4479  (penalty: ×1.00)
+     Components — skill: 0.22  exp: 1.00  loc: 0.50  text: 0.08
+     Experience — 6.3 yrs total | 5.0 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Pinecone (intermediate, 13mo), Python (advanced, 29mo), PEFT (intermediate, 29mo), Learning to Rank (intermediate, 21mo)
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 120d very high — unplaceable within buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 79  CAND_0054859  →  score: 0.4479  (penalty: ×1.00)
+     Components — skill: 0.26  exp: 0.99  loc: 0.40  text: 0.07
+     Experience — 6.9 yrs total | 3.92 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 47mo), Python (intermediate, 33mo), PEFT (advanced, 30mo), Learning to Rank (intermediate, 12mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo)
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 90d high — beyond buyout window | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 80  CAND_0085629  →  score: 0.4478  (penalty: ×1.00)
+     Components — skill: 0.22  exp: 1.00  loc: 0.55  text: 0.06
+     Experience — 6.0 yrs total | 4.42 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Pinecone (advanced, 22mo), Python (advanced, 57mo), Ranking Evaluation (intermediate, 12mo), Fine-tuning LLMs (intermediate, 12mo), Learning to Rank (intermediate, 12mo) +1 more
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 81  CAND_0078262  →  score: 0.4475  (penalty: ×1.00)
+     Components — skill: 0.26  exp: 0.93  loc: 0.55  text: 0.08
+     Experience — 4.9 yrs total | 3.25 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 39mo), FAISS (intermediate, 31mo), Python (advanced, 20mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 82  CAND_0025882  →  score: 0.4475  (penalty: ×1.00)
+     Components — skill: 0.25  exp: 0.94  loc: 0.55  text: 0.09
+     Experience — 5.6 yrs total | 4.17 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Milvus (advanced, 50mo), Python (advanced, 22mo), LoRA (advanced, 25mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 45d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 83  CAND_0048509  →  score: 0.4467  (penalty: ×1.00)
+     Components — skill: 0.25  exp: 0.95  loc: 0.60  text: 0.06
+     Experience — 4.2 yrs total | 4.2 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Pinecone (advanced, 53mo), Python (intermediate, 22mo), Learning to Rank (advanced, 42mo)
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 90d high — beyond buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 84  CAND_0056877  →  score: 0.4464  (penalty: ×1.00)
+     Components — skill: 0.13  exp: 1.00  loc: 0.85  text: 0.06
+     Experience — 6.2 yrs total | 4.25 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Elasticsearch (advanced, 51mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo)
+     Location       — In acceptable city (Hyderabad, Telangana) | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 85  CAND_0077504  →  score: 0.4462  (penalty: ×1.00)
+     Components — skill: 0.40  exp: 0.98  loc: 0.00  text: 0.05
+     Experience — 4.6 yrs total | 4.6 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 48mo), Pinecone (advanced, 60mo), Python (advanced, 18mo), LoRA (advanced, 55mo), Learning to Rank (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 120d very high — unplaceable within buyout window | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 86  CAND_0028318  →  score: 0.4459  (penalty: ×1.00)
+     Components — skill: 0.31  exp: 1.00  loc: 0.20  text: 0.06
+     Experience — 6.4 yrs total | 4.08 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Pinecone (advanced, 49mo), Python (advanced, 46mo), BM25 (intermediate, 25mo), LoRA (intermediate, 27mo), Learning to Rank (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 120d very high — unplaceable within buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 87  CAND_0043791  →  score: 0.4458  (penalty: ×1.00)
+     Components — skill: 0.14  exp: 0.98  loc: 0.85  text: 0.07
+     Experience — 4.7 yrs total | 4.5 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Weaviate (advanced, 54mo), Python (intermediate, 12mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo), Distributed Systems (intermediate, 12mo)
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 88  CAND_0004713  →  score: 0.4449  (penalty: ×1.00)
+     Components — skill: 0.16  exp: 0.97  loc: 0.85  text: 0.05
+     Experience — 7.7 yrs total | 3.67 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Pinecone (advanced, 44mo), Python (intermediate, 14mo), Distributed Systems (intermediate, 12mo)
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 89  CAND_0072144  →  score: 0.4447  (penalty: ×1.00)
+     Components — skill: 0.28  exp: 0.98  loc: 0.35  text: 0.07
+     Experience — 4.7 yrs total | 4.7 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Pinecone (advanced, 59mo), Python (intermediate, 26mo), BM25 (advanced, 55mo), Fine-tuning LLMs (intermediate, 12mo), Distributed Systems (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 60d above ideal but within buyout/scope range | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 90  CAND_0061674  →  score: 0.4445  (penalty: ×1.00)
+     Components — skill: 0.35  exp: 0.98  loc: 0.15  text: 0.05
+     Experience — 4.7 yrs total | 4.5 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 54mo), Qdrant (advanced, 49mo), Python (intermediate, 12mo), BM25 (advanced, 26mo), Fine-tuning LLMs (intermediate, 12mo) +2 more
+     Location       — In acceptable city (Mumbai, Maharashtra) | Notice period 120d very high — unplaceable within buyout window | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 91  CAND_0020406  →  score: 0.4442  (penalty: ×1.00)
+     Components — skill: 0.13  exp: 0.94  loc: 1.00  text: 0.06
+     Experience — 5.3 yrs total | 4.42 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Python (intermediate, 36mo), PEFT (advanced, 53mo), Distributed Systems (intermediate, 12mo)
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 92  CAND_0001056  →  score: 0.4438  (penalty: ×1.00)
+     Components — skill: 0.31  exp: 0.94  loc: 0.30  text: 0.09
+     Experience — 5.1 yrs total | 4.58 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 55mo), Pinecone (intermediate, 33mo), Python (intermediate, 35mo), LoRA (intermediate, 20mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 90d high — beyond buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 93  CAND_0022463  →  score: 0.4437  (penalty: ×1.00)
+     Components — skill: 0.30  exp: 1.00  loc: 0.20  text: 0.07
+     Experience — 6.5 yrs total | 4.0 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Embeddings (advanced, 48mo), Python (advanced, 44mo), LoRA (advanced, 22mo), Learning to Rank (intermediate, 13mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 120d very high — unplaceable within buyout window | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 94  CAND_0090201  →  score: 0.4436  (penalty: ×1.00)
+     Components — skill: 0.07  exp: 1.00  loc: 1.00  text: 0.07
+     Experience — 8.0 yrs total | 4.33 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Python (intermediate, 16mo), Fine-tuning LLMs (intermediate, 28mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo), Distributed Systems (intermediate, 12mo)
+     Location       — In preferred city (Pune, Maharashtra) | Notice period 30d within ideal <=30d | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 95  CAND_0001637  →  score: 0.4429  (penalty: ×1.00)
+     Components — skill: 0.22  exp: 0.95  loc: 0.65  text: 0.06
+     Experience — 7.6 yrs total | 3.42 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Elasticsearch (advanced, 24mo), Python (intermediate, 22mo), LoRA (advanced, 41mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo), Distributed Systems (intermediate, 12mo)
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 96  CAND_0080102  →  score: 0.4427  (penalty: ×1.00)
+     Components — skill: 0.21  exp: 1.00  loc: 0.55  text: 0.05
+     Experience — 6.5 yrs total | 4.92 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Python (advanced, 44mo), Fine-tuning LLMs (advanced, 25mo), Learning to Rank (advanced, 26mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+# 97  CAND_0023194  →  score: 0.4425  (penalty: ×1.00)
+     Components — skill: 0.28  exp: 1.00  loc: 0.25  text: 0.07
+     Experience — 6.3 yrs total | 4.08 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — FAISS (advanced, 49mo), Python (advanced, 49mo), Ranking Evaluation (intermediate, 12mo), BM25 (intermediate, 23mo), Fine-tuning LLMs (intermediate, 12mo) +2 more
+     Location       — In acceptable city (Hyderabad, Telangana) | Notice period 90d high — beyond buyout window | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 98  CAND_0092255  →  score: 0.4424  (penalty: ×1.00)
+     Components — skill: 0.29  exp: 0.86  loc: 0.65  text: 0.08
+     Experience — 5.2 yrs total | 3.0 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Weaviate (advanced, 27mo), Python (advanced, 43mo), Learning to Rank (advanced, 32mo)
+     Location       — In preferred city (Noida, Uttar Pradesh) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+# 99  CAND_0030468  →  score: 0.4417  (penalty: ×1.00)
+     Components — skill: 0.24  exp: 0.83  loc: 0.35  text: 0.30
+     Experience — 5.4 yrs total | 5.4 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Milvus (expert, 85mo), Python (advanced, 38mo), Ranking Evaluation (intermediate, 12mo), HR-tech / Recruiting / Marketplace (intermediate, 12mo)
+     Location       — Not in target city but willing to relocate; relocation offered | Notice period 45d above ideal but within buyout/scope range | Work-mode preference (remote) may not fit hybrid requirement
+     Education      — Education credentials appear consistent
+
+#100  CAND_0017331  →  score: 0.4417  (penalty: ×1.00)
+     Components — skill: 0.18  exp: 0.97  loc: 0.70  text: 0.06
+     Experience — 6.1 yrs total | 3.67 applied AI/ML yrs | hands-on score: 1.0
+     Skills matched — Elasticsearch (advanced, 44mo), Python (intermediate, 26mo), Fine-tuning LLMs (intermediate, 12mo), Distributed Systems (intermediate, 12mo)
+     Location       — In acceptable city (Mumbai, Maharashtra) | Notice period 60d above ideal but within buyout/scope range | Work-mode preference compatible with hybrid
+     Education      — Education credentials appear consistent
+
+================================================================================
+
