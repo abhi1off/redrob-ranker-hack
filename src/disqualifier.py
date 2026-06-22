@@ -1,6 +1,7 @@
 import re
 from datetime import date, datetime
 import json
+from collections import Counter
 
 def get_field(candidate, field):
 
@@ -66,7 +67,7 @@ def evaluate(value, operator, expected, rule=None):
 
     if operator == ">=":
         return value >= expected
-
+    
     if operator == "IN":
         if isinstance(value, str):
             return value.lower() in {str(x).lower() for x in expected}
@@ -107,11 +108,30 @@ def all_companies_in_service_list(candidate, allowed):
     allowed_set = {c.lower() for c in allowed}
     return all(company in allowed_set for company in companies)
 
-def check_rule_group(candidate, rules):
+def cert_year_before_tech_release(candidate, tech_release_years):
+    """Check if any certification is dated before the technology was released."""
+    for cert in candidate.get("certifications", []):
+        name = cert.get("name", "")
+        year = cert.get("year")
+        if not year:
+            continue
+        # Check each known tech keyword in cert name
+        for tech, release_year in tech_release_years.items():
+            # print(f"Checking cert '{name}' ({year}) against tech '{tech}' (release {release_year})")
+            if tech.lower() in name.lower() and int(year) < release_year:
+                print(f"Disqualifying: cert '{name}' ({year}) is before tech release year {release_year}")
+                return True
+    return False
+
+def check_rule_group(candidate, rules, tech_release_years=None):
     for rule in rules:
         # ALL_IN is special: needs both profile + career_history
         if rule.get("operator") == "ALL_IN":
             fired = all_companies_in_service_list(candidate, rule["value"])
+
+        # CERT_YEAR_BEFORE_TECH_RELEASE is special: needs candidate certifications + tech_release_years
+        elif rule.get("operator") == "CERT_YEAR_BEFORE_TECH_RELEASE":
+            fired = cert_year_before_tech_release(candidate, tech_release_years or {})
 
         elif "field" in rule:
             value = get_field(candidate, rule["field"])

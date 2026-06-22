@@ -2,65 +2,7 @@
   "_comment": "ProfileVerifier rules — applied after hard disqualification, before ML pipeline.",
   "_scoring": "Every candidate starts at 1.0. Each fired rule deducts its penalty. Floor is 0.0. Score feeds ML pipeline as a credibility multiplier.",
 
-  "technology_release_years": {
-    "_comment": "Used to catch certifications/skills dated before the technology existed.",
-    "LangChain": 2022,
-    "PyTorch": 2016,
-    "Hugging Face Transformers": 2019,
-    "Kubernetes": 2014,
-    "Docker": 2013,
-    "TensorFlow": 2015,
-    "Kafka": 2011,
-    "Airflow": 2015,
-    "FastAPI": 2018,
-    "Ray": 2017,
-    "FAISS": 2017,
-    "Pinecone": 2019,
-    "Weaviate": 2018,
-    "Qdrant": 2021,
-    "Milvus": 2019,
-    "OpenAI API": 2020,
-    "ChatGPT": 2022,
-    "LlamaIndex": 2022,
-    "Haystack": 2019,
-    "LoRA": 2021,
-    "Kubeflow": 2018,
-    "MLflow": 2018,
-    "Weights & Biases": 2018,
-    "dbt": 2016,
-    "Snowflake": 2012,
-    "Databricks": 2013,
-    "Spark": 2014,
-    "React": 2013,
-    "Angular": 2016,
-    "Vue": 2014,
-    "Flutter": 2017,
-    "Terraform": 2014
-  },
-
   "integrity_rules": [
-
-    {
-      "id": "cert_impossible_date",
-      "description": "Certification dated before the technology was publicly released.",
-      "target": "certifications",
-      "check": "cert_year_before_tech_release",
-      "penalty": 0.20,
-      "severity": "high",
-      "flag_message": "Certification '{name}' dated {year} but technology released {release_year}."
-    },
-
-    {
-      "id": "skill_duration_exceeds_career",
-      "description": "A skill's duration_months exceeds the candidate's total career length.",
-      "target": "skills",
-      "check": "skill_duration_gt_total_career_months",
-      "penalty": 0.10,
-      "severity": "medium",
-      "per_occurrence": true,
-      "max_penalty": 0.20,
-      "flag_message": "Skill '{name}' claims {duration_months} months but total career is {career_months} months."
-    },
 
     {
       "id": "claimed_yoe_vs_history_gap",
@@ -74,24 +16,13 @@
     },
 
     {
-      "id": "experience_before_graduation",
-      "description": "Career history starts before the candidate's latest degree ended.",
-      "target": "education_vs_career",
-      "check": "career_start_before_last_degree_end",
-      "overlap_tolerance_months": 6,
-      "penalty": 0.10,
-      "severity": "medium",
-      "flag_message": "Career at '{company}' started {start_date}, but last degree ended {grad_year}."
-    },
-
-    {
       "id": "degree_duration_too_short",
       "description": "A degree completed in fewer years than standard (B.Tech/B.E. < 3.5 yrs, M.Tech < 1.5 yrs).",
       "target": "education",
       "check": "degree_duration_below_minimum",
       "degree_minimums": {
-        "B.Tech": 3.5,
-        "B.E.": 3.5,
+        "B.Tech": 3,
+        "B.E.": 3,
         "M.Tech": 1.5,
         "M.E.": 1.5,
         "MBA": 1.5,
@@ -99,11 +30,33 @@
         "B.Sc": 2.5,
         "Ph.D": 3.0
       },
-      "penalty": 0.08,
+      "penalty": 0.10,
       "severity": "low",
       "per_occurrence": true,
-      "max_penalty": 0.08,
+      "max_penalty": 0.30,
       "flag_message": "Degree '{degree}' from {institution} completed in {actual_years} yrs (minimum {min_years} yrs)."
+    },
+
+    {
+      "id": "degree_duration_implausibly_long",
+      "description": "A degree completed in significantly more years than standard maximum.",
+      "target": "education",
+      "check": "degree_duration_above_maximum",
+      "degree_maximums": {
+        "B.Tech": 5.5,
+        "B.E.": 5.5,
+        "M.Tech": 2.5,
+        "M.E.": 2.5,
+        "MBA": 2.5,
+        "M.Sc": 2.5,
+        "B.Sc": 4.5,
+        "Ph.D": 7.0
+      },
+      "penalty": 0.08,
+      "severity": "medium",
+      "per_occurrence": true,
+      "max_penalty": 0.16,
+      "flag_message": "Degree '{degree}' from {institution} took {actual_years} yrs (maximum expected {max_years} yrs)."
     },
 
     {
@@ -114,65 +67,21 @@
       "penalty": 0.10,
       "severity": "medium",
       "flag_message": "'{degree_a}' ({end_a}) overlaps with '{degree_b}' ({start_b})."
-    },
-
-    {
-      "id": "assessment_contradicts_proficiency",
-      "description": "Skill assessment score is low but proficiency is claimed advanced or expert.",
-      "target": "skills_vs_assessments",
-      "check": "assessment_score_below_threshold_for_proficiency",
-      "thresholds": {
-        "advanced": 65,
-        "expert": 75
-      },
-      "penalty": 0.15,
-      "severity": "high",
-      "per_occurrence": true,
-      "max_penalty": 0.30,
-      "flag_message": "Skill '{name}' claimed {proficiency} but assessment score is {score:.1f} (threshold {threshold})."
-    },
-
-    {
-      "id": "skill_duration_vs_company_tenure",
-      "description": "Skill duration_months exceeds tenure at companies where it could plausibly have been used.",
-      "target": "skills",
-      "check": "skill_duration_gt_relevant_company_tenure",
-      "tolerance_months": 6,
-      "penalty": 0.08,
-      "severity": "low",
-      "per_occurrence": true,
-      "max_penalty": 0.16,
-      "flag_message": "Skill '{name}' claims {duration_months} months but max relevant tenure is {max_tenure} months."
-    },
-
-    {
-      "id": "headline_title_mismatch",
-      "description": "Current title in profile contradicts the career_history current role title significantly.",
-      "target": "profile_vs_career",
-      "check": "headline_current_title_vs_career_history_title_mismatch",
-      "penalty": 0.05,
-      "severity": "low",
-      "flag_message": "Profile title '{profile_title}' doesn't match current role title '{history_title}'."
-    },
-
-    {
-    "id": "bot_signature_summary",
-    "description": "Summary contains platform template phrases — graduated by count.",
-    "target": "profile_summary",
-    "check": "bot_phrase_count_in_summary",
-    "thresholds": {
-      "1": 0.05,
-      "2": 0.12,
-      "3": 0.25
-    },
-    "max_penalty": 0.25,
-    "severity": "medium",
-    "flag_message": "Summary contains {count} platform template phrase(s)."
-  }
+    }
 
   ],
 
   "credibility_rules": [
+
+    {
+      "id": "activity_before_signup",
+      "description": "last_active_date precedes signup_date — impossible chronology.",
+      "target": "redrob_signals",
+      "check": "last_active_date_lt_signup_date",
+      "penalty": 0.20,
+      "severity": "critical",
+      "flag_message": "last_active_date ({last_active}) is before signup_date ({signup}) — data integrity violation."
+    },
 
     {
       "id": "unverified_contact",
@@ -182,18 +91,6 @@
       "penalty": 0.10,
       "severity": "medium",
       "flag_message": "Neither email nor phone verified."
-    },
-
-    {
-      "id": "zero_endorsements_advanced_skill",
-      "description": "Skill claimed as advanced/expert but has zero endorsements and no assessment score.",
-      "target": "skills",
-      "check": "advanced_skill_zero_endorsements_no_assessment",
-      "penalty": 0.05,
-      "severity": "low",
-      "per_occurrence": true,
-      "max_penalty": 0.10,
-      "flag_message": "Skill '{name}' claimed {proficiency} with 0 endorsements and no assessment."
     },
 
     {
@@ -247,7 +144,7 @@
       "target": "career_history",
       "check": "single_company_career",
       "min_years": 3,
-      "penalty": 0.03,
+      "penalty": 0.01,
       "severity": "info",
       "flag_message": "Entire {years} yr career at single company '{company}'."
     }
