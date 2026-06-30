@@ -1,4 +1,39 @@
 {
+    "technology_release_years": {
+    "_comment": "Used to catch certifications/skills dated before the technology existed.",
+    "LangChain": 2022,
+    "PyTorch": 2016,
+    "Hugging Face Transformers": 2019,
+    "Kubernetes": 2014,
+    "Docker": 2013,
+    "TensorFlow": 2015,
+    "Kafka": 2011,
+    "Airflow": 2015,
+    "FastAPI": 2018,
+    "Ray": 2017,
+    "FAISS": 2017,
+    "Pinecone": 2019,
+    "Weaviate": 2018,
+    "Qdrant": 2021,
+    "Milvus": 2019,
+    "OpenAI API": 2020,
+    "ChatGPT": 2022,
+    "LlamaIndex": 2022,
+    "Haystack": 2019,
+    "LoRA": 2021,
+    "Kubeflow": 2018,
+    "MLflow": 2018,
+    "Weights & Biases": 2018,
+    "dbt": 2016,
+    "Snowflake": 2012,
+    "Databricks": 2013,
+    "Spark": 2014,
+    "React": 2013,
+    "Angular": 2016,
+    "Vue": 2014,
+    "Flutter": 2017,
+    "Terraform": 2014
+  },
   "disqualification_rules": [
     {
       "id": "min_experience",
@@ -7,7 +42,15 @@
       "value": 4,
       "action": "DISQUALIFY"
     },
-
+    {
+      "id": "cert_impossible_date",
+      "field": "certifications",
+      "operator": "CERT_YEAR_BEFORE_TECH_RELEASE",
+      "description": "Certification dated before the technology was publicly released.",
+      "target": "certifications",
+      "check": "cert_year_before_tech_release",
+      "action": "DISQUALIFY"
+    },
     {
       "id": "country_relocation",
       "conditions": [
@@ -56,8 +99,17 @@
       "id": "non_coding_title",
       "field": "current_title",
       "operator": "REGEX",
-      "value": "(manager|executive)",
+      "value": "(customer support|accountant|hr|recruiter|talent acquisition)",
       "action": "DISQUALIFY"
+    },
+
+    {
+    "id": "conditional_non_coding_titles",
+    "field": "current_title",
+    "operator": "REGEX",
+    "value": "(manager|executive|business|content|marketing)",
+    "exceptions": ["engineer", "developer", "ml", "ai", "data"],
+    "action": "DISQUALIFY"
     },
 
     {

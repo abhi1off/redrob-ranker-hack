@@ -1,0 +1,153 @@
+{
+  "_comment": "ProfileVerifier rules — applied after hard disqualification, before ML pipeline.",
+  "_scoring": "Every candidate starts at 1.0. Each fired rule deducts its penalty. Floor is 0.0. Score feeds ML pipeline as a credibility multiplier.",
+
+  "integrity_rules": [
+
+    {
+      "id": "claimed_yoe_vs_history_gap",
+      "description": "Claimed years_of_experience significantly exceeds what career history accounts for.",
+      "target": "profile",
+      "check": "claimed_yoe_minus_computed_yoe_gt_threshold",
+      "threshold": 2.0,
+      "penalty": 0.15,
+      "severity": "high",
+      "flag_message": "Claims {claimed_yoe} yrs but career history accounts for only {computed_yoe} yrs."
+    },
+
+    {
+      "id": "degree_duration_too_short",
+      "description": "A degree completed in fewer years than standard (B.Tech/B.E. < 3.5 yrs, M.Tech < 1.5 yrs).",
+      "target": "education",
+      "check": "degree_duration_below_minimum",
+      "degree_minimums": {
+        "B.Tech": 3,
+        "B.E.": 3,
+        "M.Tech": 1.5,
+        "M.E.": 1.5,
+        "MBA": 1.5,
+        "M.Sc": 1.5,
+        "B.Sc": 2.5,
+        "Ph.D": 3.0
+      },
+      "penalty": 0.10,
+      "severity": "low",
+      "per_occurrence": true,
+      "max_penalty": 0.30,
+      "flag_message": "Degree '{degree}' from {institution} completed in {actual_years} yrs (minimum {min_years} yrs)."
+    },
+
+    {
+      "id": "degree_duration_implausibly_long",
+      "description": "A degree completed in significantly more years than standard maximum.",
+      "target": "education",
+      "check": "degree_duration_above_maximum",
+      "degree_maximums": {
+        "B.Tech": 5.5,
+        "B.E.": 5.5,
+        "M.Tech": 2.5,
+        "M.E.": 2.5,
+        "MBA": 2.5,
+        "M.Sc": 2.5,
+        "B.Sc": 4.5,
+        "Ph.D": 7.0
+      },
+      "penalty": 0.08,
+      "severity": "medium",
+      "per_occurrence": true,
+      "max_penalty": 0.16,
+      "flag_message": "Degree '{degree}' from {institution} took {actual_years} yrs (maximum expected {max_years} yrs)."
+    },
+
+    {
+      "id": "overlapping_fulltime_degrees",
+      "description": "Two full-time degrees with overlapping timelines.",
+      "target": "education",
+      "check": "education_timeline_overlap",
+      "penalty": 0.10,
+      "severity": "medium",
+      "flag_message": "'{degree_a}' ({end_a}) overlaps with '{degree_b}' ({start_b})."
+    }
+
+  ],
+
+  "credibility_rules": [
+
+    {
+      "id": "activity_before_signup",
+      "description": "last_active_date precedes signup_date — impossible chronology.",
+      "target": "redrob_signals",
+      "check": "last_active_date_lt_signup_date",
+      "penalty": 0.20,
+      "severity": "critical",
+      "flag_message": "last_active_date ({last_active}) is before signup_date ({signup}) — data integrity violation."
+    },
+
+    {
+      "id": "unverified_contact",
+      "description": "Neither email nor phone is verified — profile authenticity unconfirmed.",
+      "target": "redrob_signals",
+      "check": "verified_email_false_and_verified_phone_false",
+      "penalty": 0.10,
+      "severity": "medium",
+      "flag_message": "Neither email nor phone verified."
+    },
+
+    {
+      "id": "all_skills_same_proficiency",
+      "description": "All skills listed at the same proficiency level — likely bulk-fill, not genuine self-assessment.",
+      "target": "skills",
+      "check": "all_skills_identical_proficiency",
+      "min_skill_count": 5,
+      "penalty": 0.08,
+      "severity": "medium",
+      "flag_message": "All {count} skills listed as '{proficiency}' — possible bulk profile fill."
+    },
+
+    {
+      "id": "summary_vs_title_domain_mismatch",
+      "description": "Summary describes a completely different domain than current title suggests.",
+      "target": "profile",
+      "check": "summary_title_domain_embedding_distance",
+      "cosine_distance_threshold": 0.6,
+      "penalty": 0.08,
+      "severity": "medium",
+      "flag_message": "Summary domain appears inconsistent with current title '{current_title}'."
+    },
+
+    {
+      "id": "low_profile_completeness",
+      "description": "Profile completeness score is very low, limiting signal reliability.",
+      "target": "redrob_signals",
+      "check": "profile_completeness_below_threshold",
+      "threshold": 40,
+      "penalty": 0.05,
+      "severity": "low",
+      "flag_message": "Profile completeness is {score}% (threshold {threshold}%)."
+    },
+
+    {
+      "id": "high_application_volume_low_response",
+      "description": "Submitting many applications but very low recruiter response — possible spray-and-pray.",
+      "target": "redrob_signals",
+      "check": "applications_gt_threshold_and_response_rate_lt_threshold",
+      "application_threshold": 15,
+      "response_rate_threshold": 0.20,
+      "penalty": 0.05,
+      "severity": "low",
+      "flag_message": "{apps} applications in 30d with only {rr:.0%} recruiter response rate."
+    },
+
+    {
+      "id": "single_company_entire_career",
+      "description": "Entire career at one company — limited exposure signal, not a disqualifier but noted.",
+      "target": "career_history",
+      "check": "single_company_career",
+      "min_years": 3,
+      "penalty": 0.01,
+      "severity": "info",
+      "flag_message": "Entire {years} yr career at single company '{company}'."
+    }
+
+  ]
+}

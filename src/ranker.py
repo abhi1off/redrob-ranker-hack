@@ -2,7 +2,9 @@ import argparse
 import json
 
 from pathlib import Path
-from disqualifier import remove_disqualified_candidates
+from src.disqualifier import remove_disqualified_candidates
+from src.profile_integrity_scorer import ProfileVerifier
+from src.bot_signature_map import collect_bot_signatures
 
 def build_candidates(candidates_path: Path):
     print("starting build candidates...", candidates_path)
@@ -11,7 +13,12 @@ def build_candidates(candidates_path: Path):
         config = json.load(f)
     
     remove_disqualified_candidates(str(candidates_path), config)
-    
+
+    bot_signatures = collect_bot_signatures("resources/candidates_qualified.jsonl")
+
+    verifier = ProfileVerifier("src/profile_integrity_conditions.json",bot_signatures)
+    results  = verifier.score_all("resources/candidates_qualified.jsonl")
+
 
 def rank_candidates(jd_path: Path, output_path: Path):
     print("starting rank candidates...")
