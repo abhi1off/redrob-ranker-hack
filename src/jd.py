@@ -1,17 +1,6 @@
-"""
-Structured representation of the Redrob "Senior AI Engineer - Founding Team" JD.
-
-This is hand-authored from the raw JD text because the JD is rich, narrative,
-and contains explicit hard-disqualifiers / soft-preferences / anti-patterns
-that are hard to extract reliably with pure regex on a single pass.
-
-For future JDs, this schema is the TARGET format. A lighter-weight
-regex/gazetteer extractor (see jd_extractor.py) can populate the
-"easy" fields (years, location, skills) automatically; the "judgment"
-fields (disqualifiers, ideal_profile, culture flags) are best filled
-via a structured intake form / templated JD writing process so they
-don't require re-parsing free text every time.
-"""
+# Structured JD definition for the Redrob Senior AI Engineer role.
+# Hand-authored from the raw JD text since the JD has rich hard-disqualifiers
+# and judgment calls that are hard to extract reliably with regex.
 
 JD = {
     "job_id": "JD_REDROB_SR_AI_ENG_FOUNDING",

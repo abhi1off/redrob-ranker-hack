@@ -1,17 +1,11 @@
-"""
-Corpus-wide TF-IDF vectorizer for fast candidate-to-JD text similarity.
-
-Replaces simple_bm25_score() in matcher.py for 100k-scale use.
-Builds an sklearn TfidfVectorizer index over all candidate texts once, then
-scores every candidate against the JD via a single sparse matrix dot product —
-O(vocab × n_docs) total, not O(n_docs × |jd_vocab|) per doc.
-
-Usage:
-    from corpus_vectorizer import CorpusVectorizer
-    cv = CorpusVectorizer()
-    cv.fit(candidates)                      # ~30s for 100k docs
-    scores = cv.score_all(jd_raw_text)      # numpy array, shape (n_candidates,)
-"""
+# TF-IDF index over all candidate text, scored against the JD.
+# For 100k candidates with a ~10k-token vocab this uses ~100-200 MB RAM
+# and scores everything in under 3 seconds.
+#
+# Usage:
+#   cv = CorpusVectorizer()
+#   cv.fit(candidates)
+#   scores = cv.score_all(jd_raw_text)  # numpy array, shape (n_candidates,)
 
 import re
 import numpy as np
@@ -36,13 +30,7 @@ def _candidate_text(candidate: dict) -> str:
 
 
 class CorpusVectorizer:
-    """
-    Fits a TF-IDF index on a corpus of candidates and scores them against a
-    query document (the JD) using cosine similarity.
-
-    The matrix is kept sparse throughout — for 100k candidates with a typical
-    10k-token vocabulary this uses ~100–200 MB of RAM and scores in <3s.
-    """
+    """Fits a TF-IDF index on candidate docs and scores them against a query (the JD)."""
 
     def __init__(
         self,
@@ -55,41 +43,25 @@ class CorpusVectorizer:
             max_features=max_features,
             ngram_range=ngram_range,
             min_df=min_df,
-            sublinear_tf=sublinear_tf,     # log(1+tf) — dampens repeated terms
+            sublinear_tf=sublinear_tf,     # log(1+tf) dampens repeated terms
             strip_accents="unicode",
             analyzer="word",
             token_pattern=r"[a-zA-Z][a-zA-Z0-9\-\+#]*",
         )
-        self._candidate_matrix = None   # sparse (n_candidates, vocab)
+        self._candidate_matrix = None
         self._fitted = False
 
-    # ------------------------------------------------------------------
     def fit(self, candidates: list[dict]) -> "CorpusVectorizer":
-        """
-        Build the TF-IDF index from a list of candidate dicts.
-
-        Args:
-            candidates: list of raw candidate dicts (same schema as matcher.py).
-                        Preserves original list order so scores[i] maps to candidates[i].
-        Returns:
-            self  (fluent interface)
-        """
+        """Build the TF-IDF index from a list of candidate dicts."""
         corpus = [_candidate_text(c) for c in candidates]
-        self._candidate_matrix = self._vectorizer.fit_transform(corpus)  # sparse
-        # L2-normalise rows so dot product == cosine similarity
+        self._candidate_matrix = self._vectorizer.fit_transform(corpus)
+        # L2-normalise so dot product == cosine similarity
         self._candidate_matrix = normalize(self._candidate_matrix, norm="l2", copy=False)
         self._fitted = True
         return self
 
-    # ------------------------------------------------------------------
     def score_all(self, jd_text: str) -> np.ndarray:
-        """
-        Return a 1-D numpy array of cosine similarities, shape (n_candidates,).
-        Values are in [0, 1]; higher = more textually similar to the JD.
-
-        Args:
-            jd_text: raw JD text string (same as jd["raw_text_for_bm25"]).
-        """
+        """Cosine similarity of every candidate against jd_text. Returns array of shape (n,)."""
         if not self._fitted:
             raise RuntimeError("Call fit() before score_all().")
 

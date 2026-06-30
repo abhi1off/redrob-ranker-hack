@@ -1,22 +1,8 @@
-"""
-Lightweight gazetteer-based skill extractor over free-text fields
-(summary, career_history descriptions, headline).
-
-Purpose: candidates frequently describe relevant work without listing
-the corresponding term in `skills[]` (e.g. "migrated keyword search to
-embedding-based retrieval" without a "Hybrid Search" skill entry, or
-"offline-online correlation analysis" without "Ranking Evaluation").
-
-This module finds such phrase-level signals and returns "soft" skill
-entries that the matcher can merge with the structured skills list.
-Soft matches get a lower proficiency ceiling (capped at "intermediate")
-since text mentions aren't independently verified the way endorsed
-skills are.
-
-No LLM. Pure keyword/phrase matching (case-insensitive substring search).
-For 100k scale, swap in flashtext.KeywordProcessor for speed, this uses
-plain substring search for clarity/portability.
-"""
+# Find skill signals in free-text fields (summary, career descriptions, headline)
+# that didn't make it into the structured skills list.
+# e.g. someone writes "migrated to embedding-based retrieval" but never adds
+# "Hybrid Search" to their skills. We catch those with regex patterns.
+# Text matches are capped at "intermediate" since they're unverified.
 
 import re
 
@@ -79,19 +65,8 @@ _COMPILED_PATTERNS = {
 }
 
 
-# ----------------------------------------------------------------------
-# SKILL IMPLICATION RULES
-# ----------------------------------------------------------------------
-# If a candidate has ANY of the "trigger" skills in skills[] (case-insensitive),
-# infer the "implied" skill is also present, even if not separately listed.
-#
-# Rationale: practitioners frequently list the tools/libraries they use but
-# not the underlying language/foundation those tools require. A candidate
-# listing scikit-learn, MLflow, PySpark, or Hugging Face Transformers is
-# using Python; listing these as a "Python" skill separately is rare.
-#
-# Implied proficiency = MIN of (trigger skill's proficiency, "intermediate")
-# i.e. capped at intermediate since this is inference, not direct evidence.
+# If a candidate lists certain tools, infer the underlying skill they imply.
+# e.g. scikit-learn implies Python. Implied proficiency is capped at "intermediate".
 SKILL_IMPLICATION_RULES = {
     "Python": {
         "triggers": [

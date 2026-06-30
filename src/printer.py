@@ -1,10 +1,4 @@
-"""
-result_printer.py — Console output for ranked candidate results.
-
-Responsibility:
-  - Print a human-readable ranked summary table with per-candidate reasoning.
-  - No scoring logic, no file I/O — display only.
-"""
+# Print ranked candidate results to console (and optionally a file).
 
 from __future__ import annotations
 import sys
@@ -12,12 +6,7 @@ from pathlib import Path
 
 
 def print_results(results: list[dict], summary_path: Path | None = None) -> None:
-    """
-    Print a ranked summary table with score breakdown and reasoning
-    for each candidate in results (pre-sorted by final_score descending).
-
-    If summary_path is provided, the same output is also written to that file.
-    """
+    """Print a ranked summary with score breakdown per candidate."""
     out_fh = open(summary_path, "w", encoding="utf-8") if summary_path else None
 
     def _print(*args, **kwargs):
@@ -35,7 +24,7 @@ def print_results(results: list[dict], summary_path: Path | None = None) -> None
         exp   = det.get("experience_breakdown", {})
         flags = ", ".join(r.get("triggered_disqualifiers", [])) or "none"
 
-        # Top matched skills (contribution > 0), capped at 5 for readability
+        # top matched skills, cap at 5 to keep output readable
         matched_skills = [
             f"{s['matched_via']} ({s['proficiency']}, {s['duration_months']}mo)"
             for s in det.get("skill_breakdown", [])

@@ -1,21 +1,13 @@
-"""
-Candidate <-> JD matching/scoring engine. No LLM calls.
-
-Pipeline:
-  1. Hard disqualifier checks (services-only career, pure-research, etc.)
-  2. Skill match score (weighted by JD importance + candidate proficiency/endorsements/recency)
-  3. Experience match score (years, applied-AI-years proxy, hands-on-recency)
-  4. Location/logistics match score
-  5. Text similarity (BM25) on summary + career history vs JD raw text
-  6. Weighted combination -> final score + full breakdown for debugging/audit
-"""
+# Scoring engine for matching candidates against the JD. No LLM calls.
+# Produces a weighted score from 5 components:
+#   skill match, experience, location, text similarity, and disqualifier penalties.
 
 import math
 import re
 from datetime import datetime, date
 
-from text_skill_extractor import merge_text_signals_into_skills
-from education_validator import validate_education
+from skill_extractor import merge_text_signals_into_skills
+from edu_validator import validate_education
 
 
 PROFICIENCY_WEIGHT = {"beginner": 1.0, "intermediate": 2.0, "advanced": 3.0, "expert": 3.5}
@@ -30,23 +22,17 @@ def build_skill_alias_map(jd):
     return alias_map
 
 
-# ----------------------------------------------------------------------
-# 1. HARD DISQUALIFIER CHECKS
-# ----------------------------------------------------------------------
+# 1. DISQUALIFIER CHECKS
+
 def check_disqualifiers(candidate, jd):
-    """
-    Returns dict: {flag_id: {"triggered": bool, "severity": str, "reason": str}}
-    Severity drives a multiplicative penalty later.
-    """
+    """Return a dict of flag_id -> {triggered, severity, reason} for each disqualifier rule."""
     flags = {}
     career = candidate.get("career_history", [])
     profile = candidate.get("profile", {})
     skills = candidate.get("skills", [])
     skill_names = {s["name"].lower() for s in skills}
 
-    # --- pure_research_no_production ---
-    # Heuristic: no industry in career_history looks like "Research"/"Academia"
-    # and no company_size indicates an industry employer.
+    # pure research career: all entries are research/academic, no industry work
     research_keywords = {"research", "academia", "university", "lab"}
     all_industries = {c.get("industry", "").lower() for c in career}
     looks_pure_research = bool(all_industries) and all_industries.issubset(research_keywords)
@@ -57,10 +43,8 @@ def check_disqualifiers(candidate, jd):
                   if looks_pure_research else "Has non-research industry experience",
     }
 
-    # --- langchain_only_recent ---
+    # langchain-only: only recent LLM wrapper skills with no pre-LLM ML foundation
     total_years = profile.get("years_of_experience", 0)
-    # Look for "LLM/LangChain-ish" skills with short duration and check for
-    # pre-LLM ML production signals (data eng / classic ML skills with longer duration)
     llm_recent_skills = [
         s for s in skills
         if s["name"].lower() in {"langchain", "fine-tuning llms", "lora", "qlora", "peft"}
@@ -80,9 +64,7 @@ def check_disqualifiers(candidate, jd):
                   if only_recent_llm_wrapper else "Has pre-LLM ML production experience or sufficient tenure",
     }
 
-    # --- stale_ic_18mo ---
-    # If current role title contains "lead"/"manager"/"architect" AND has been
-    # in that role >18mo with no "engineer"/"developer" coding-heavy title recently.
+    # stale IC: currently in a non-coding role (architect/lead/manager) for 18+ months
     non_coding_titles = {"manager", "architect", "lead", "director", "head"}
     current_role = next((c for c in career if c.get("is_current")), None)
     stale_ic = False
@@ -97,8 +79,7 @@ def check_disqualifiers(candidate, jd):
                   if stale_ic else "Current role appears hands-on / within recency window",
     }
 
-    # --- title_chaser ---
-    # Heuristic: 3+ jobs in career_history each <= 18 months, with escalating seniority titles.
+    # title chaser: 2+ short stints with escalating seniority titles
     short_stints = [c for c in career if c.get("duration_months", 999) <= 18]
     escalation_words = ["senior", "staff", "principal", "lead"]
     escalating = False
@@ -118,8 +99,7 @@ def check_disqualifiers(candidate, jd):
                   if title_chaser else "No clear title-chasing pattern",
     }
 
-    # --- framework_enthusiast_only ---
-    # Heuristic: high endorsement count on trendy framework skills, near-zero on systems/infra skills.
+    # framework-only: trendy tools with no systems/infra depth and short tenure
     trendy = {"langchain", "tailwind", "flask"}
     systems = {"spark", "airflow", "kafka", "sql", "distributed systems", "milvus", "faiss",
                "elasticsearch", "apache beam"}
@@ -133,7 +113,7 @@ def check_disqualifiers(candidate, jd):
                   if framework_only else "Has systems/infra depth or sufficient tenure",
     }
 
-    # --- pure_services_career ---
+    # pure consulting career: every company in career history is a services firm
     consulting_firms_lower = {f.lower() for f in jd.get("consulting_firms", [])}
     company_names_lower = [c.get("company", "").lower() for c in career]
     all_consulting = bool(company_names_lower) and all(
@@ -146,7 +126,7 @@ def check_disqualifiers(candidate, jd):
                   if all_consulting else "Has product-company experience (or mixed history)",
     }
 
-    # --- cv_speech_robotics_no_nlp_ir ---
+    # CV/speech focus with no NLP/IR exposure
     cv_speech_skills = {"image classification", "gans", "speech recognition", "tts",
                          "computer vision", "robotics", "object detection"}
     nlp_ir_skills = {"nlp", "bm25", "embeddings", "milvus", "elasticsearch", "information retrieval",
@@ -161,8 +141,7 @@ def check_disqualifiers(candidate, jd):
                   if cv_no_nlp else "Has NLP/IR exposure (or no CV/speech focus)",
     }
 
-    # --- closed_source_no_external_validation ---
-    # No direct signal field for "papers/talks/OSS" in this schema; use github_activity_score as proxy.
+    # no external validation signal (5+ years but very low github activity)
     redrob = candidate.get("redrob_signals", {})
     github_score = redrob.get("github_activity_score", 0)
     closed_source_flag = total_years >= 5 and github_score < 2.0
@@ -192,9 +171,8 @@ SEVERITY_PENALTY = {
 }
 
 
-# ----------------------------------------------------------------------
 # 2. SKILL MATCH SCORE
-# ----------------------------------------------------------------------
+
 def skill_match_score(candidate, jd, alias_map):
     skills, text_signals = merge_text_signals_into_skills(candidate)
     candidate_skill_map = {s["name"].lower(): s for s in skills}
@@ -225,9 +203,7 @@ def skill_match_score(candidate, jd, alias_map):
         per_skill_multiplier = min(prof_norm * min(recency_factor, 1.0) * min(endorsement_factor, 1.3), 1.0)
         contribution = jd_skill["weight"] * per_skill_multiplier
 
-        # Inferred/unverified signals get dampened contributions:
-        # - skill_implication (e.g. scikit-learn -> Python): fairly reliable, light dampening
-        # - text_signal (phrase match in free text): less reliable, heavier dampening
+        # inferred/unverified skills get dampened contributions
         source = matched_skill.get("source", "structured")
         if source == "skill_implication":
             contribution *= 0.85
@@ -253,9 +229,8 @@ def skill_match_score(candidate, jd, alias_map):
     return min(score, 1.0), breakdown
 
 
-# ----------------------------------------------------------------------
 # 3. EXPERIENCE MATCH SCORE
-# ----------------------------------------------------------------------
+
 def experience_match_score(candidate, jd):
     profile = candidate.get("profile", {})
     total_years = profile.get("years_of_experience", 0)
@@ -264,20 +239,18 @@ def experience_match_score(candidate, jd):
     min_y, max_y = exp_req["min_years"], exp_req["max_years"]
     ideal_min, ideal_max = exp_req["ideal_total_years"]
 
-    # Score peaks within ideal range, decays outside band but band_is_soft so
-    # we don't zero out, just decay.
+    # score peaks in the ideal range, decays outside but band is soft (no hard zero)
     if ideal_min <= total_years <= ideal_max:
         years_score = 1.0
     elif min_y <= total_years <= max_y:
         years_score = 0.85
     else:
-        # decay outside the 5-9 band; soft band so not zero
+        # decay outside the 5-9 band; still a soft floor since band_is_soft=True
         if total_years < min_y:
             gap = min_y - total_years
         else:
             gap = total_years - max_y
-        # Lower floor so very over-experienced candidates (15+ yrs) are penalised
-        # more meaningfully — 15yr exp scores ~0.15 instead of 0.30.
+        # lower floor for very over-experienced candidates (15+ yrs -> ~0.15)
         years_score = max(0.15, 1.0 - 0.15 * gap)
 
     # "applied AI/ML years" proxy: sum duration_months of AI/ML-flavored skills / 12,
@@ -326,18 +299,15 @@ def experience_match_score(candidate, jd):
     }
 
 
-# ----------------------------------------------------------------------
 # 4. LOCATION / LOGISTICS MATCH SCORE
-# ----------------------------------------------------------------------
+
 def location_logistics_score(candidate, jd):
     profile = candidate.get("profile", {})
     redrob = candidate.get("redrob_signals", {})
     loc = jd["location"]
 
     candidate_city_raw = profile.get("location", "")
-    # Candidate locations often look like "Hyderabad, Telangana" while the JD
-    # lists bare city names ("Hyderabad"). Compare on the first comma-separated
-    # token (case-insensitive) as well as full-string match.
+    # candidate location is often "Hyderabad, Telangana" — compare on first token
     candidate_city_primary = candidate_city_raw.split(",")[0].strip()
 
     def city_in(city_list):
@@ -388,16 +358,13 @@ def location_logistics_score(candidate, jd):
     return min(score, 1.0), reasons
 
 
-# ----------------------------------------------------------------------
-# 5. BM25 TEXT SIMILARITY (lightweight, no external index needed for single-doc demo)
-# ----------------------------------------------------------------------
+# 5. BM25 TEXT SIMILARITY
+
 def simple_bm25_score(candidate, jd_text, k1=1.5, b=0.75):
     """
-    Minimal single-document BM25-like score against JD text.
-    For 100k-scale use, replace with a proper inverted index (Elasticsearch/rank_bm25
-    over the full corpus) so IDF is computed corpus-wide. Here we approximate IDF
-    using a uniform prior since we only have one document, but keep the function
-    signature/shape identical so swapping in a real BM25 index is a drop-in change.
+    Single-document BM25-like score against JD text.
+    IDF is a uniform prior here (no corpus). At 100k scale, fast_ranker
+    passes a corpus TF-IDF score instead, so this only runs for small batches.
     """
     def tokenize(text):
         return re.findall(r"[a-zA-Z][a-zA-Z0-9\-\+#]*", text.lower())
@@ -442,9 +409,8 @@ def simple_bm25_score(candidate, jd_text, k1=1.5, b=0.75):
     return norm_score
 
 
-# ----------------------------------------------------------------------
 # 6. FINAL COMBINED SCORE
-# ----------------------------------------------------------------------
+
 WEIGHTS = {
     "skill": 0.35,
     "experience": 0.30,
@@ -461,8 +427,7 @@ def score_candidate(candidate, jd, alias_map=None, precomputed_text_score: float
     skill_score, skill_breakdown = skill_match_score(candidate, jd, alias_map)
     exp_score, exp_breakdown = experience_match_score(candidate, jd)
     loc_score, loc_reasons = location_logistics_score(candidate, jd)
-    # Use the corpus-wide TF-IDF score from fast_ranker if available; otherwise
-    # fall back to the single-doc BM25 approximation (small batch / standalone use).
+    # use corpus TF-IDF if available (from fast_ranker), otherwise fall back to BM25
     text_score = (
         float(precomputed_text_score)
         if precomputed_text_score is not None
@@ -476,7 +441,7 @@ def score_candidate(candidate, jd, alias_map=None, precomputed_text_score: float
         + WEIGHTS["text_similarity"] * text_score
     )
 
-    # apply disqualifier penalties multiplicatively (worst case wins for hard_reject)
+    # multiply penalties together (hard_reject -> x0.0 zeroes it out)
     penalty_multiplier = 1.0
     triggered_flags = []
     for flag_id, flag in flags.items():
@@ -507,35 +472,10 @@ def score_candidate(candidate, jd, alias_map=None, precomputed_text_score: float
     }
 
 
-# ----------------------------------------------------------------------
 # 7. BATCH SCORING
-# ----------------------------------------------------------------------
+
 def score_candidates(candidates, jd, top_n=None, include_details=True):
-    """
-    Score a list of candidate dicts against a JD and return ranked results.
-
-    Args:
-        candidates      : list of candidate dicts (same schema as score_candidate)
-        jd              : JD dict (from jd_schema.py, with raw_text_for_bm25 populated)
-        top_n           : if set, return only the top N results (by final_score).
-                          None returns all candidates ranked.
-        include_details : if False, strips the verbose `details` key from each
-                          result to keep the output smaller (useful at 100k scale
-                          when you only need scores for the ranking step and will
-                          fetch details for shortlisted candidates separately).
-
-    Returns:
-        list of result dicts sorted by final_score descending, each containing:
-          - candidate_id
-          - final_score
-          - raw_score_before_penalties
-          - penalty_multiplier
-          - triggered_disqualifiers
-          - component_scores
-          - details  (omitted if include_details=False)
-          - rank     (1-based position in the sorted output)
-    """
-    # Build alias map once, reuse across all candidates
+    """Score a list of candidates against a JD. Returns sorted results with rank attached."""
     alias_map = build_skill_alias_map(jd)
 
     results = []

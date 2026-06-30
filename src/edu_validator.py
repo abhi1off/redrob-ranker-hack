@@ -1,23 +1,6 @@
-"""
-education_validator.py — Detect suspicious or fabricated education credentials.
-
-No LLM. Three heuristic checks:
-
-1. DURATION CHECK
-   Each degree type has an expected minimum and maximum duration in years.
-   A B.E. completed in 3 years is structurally impossible in India.
-
-2. PROGRAM-INSTITUTION-YEAR CHECK
-   Known Indian institutions mapped to programs they actually offered and the
-   earliest year those programs could plausibly have graduated students.
-   e.g. COEP B.E. Data Science did not exist before ~2022.
-
-3. TIER MISMATCH CHECK
-   COEP, BITS, NIT etc. are tier-1; if the profile marks them tier_2 it is
-   either a data error or a fabrication signal.
-
-Returns a list of issues (strings). Empty list = no problems detected.
-"""
+# Check education credentials for obvious issues (impossible durations,
+# programs that didn't exist yet, tier mismatches).
+# Returns a list of issue strings; empty = no problems found.
 
 from __future__ import annotations
 

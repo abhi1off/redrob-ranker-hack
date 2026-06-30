@@ -1,5 +1,5 @@
 import json
-from jd_schema import JD
+from jd import JD
 from matcher import score_candidate, build_skill_alias_map, score_candidates
 from pathlib import Path
 

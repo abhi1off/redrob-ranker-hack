@@ -1,23 +1,10 @@
-"""
-fast_ranker.py -- Orchestrator + CLI for the two-stage 100k candidate ranker.
-
-Responsibility:
-  - Wire together the individual pipeline modules.
-  - Expose run_pipeline() for programmatic use.
-  - Provide a CLI via __main__.
-
-Pipeline modules (one responsibility each):
-  candidate_loader  -- load JSONL + hard disqualification
-  coarse_scorer     -- Stage-1 skill coverage + TF-IDF ranking
-  stage2_scorer     -- Stage-2 full scoring in parallel
-  result_printer    -- console summary table
-
-Usage:
-    cd src
-    python fast_ranker.py
-    python fast_ranker.py --top_n 50 --shortlist 3000
-    python fast_ranker.py --candidates ../resources/candidates.jsonl --top_n 100
-"""
+# Two-stage pipeline for ranking 100k candidates. Runs from CLI or imported as a module.
+# Stage 1: hard disqualify + TF-IDF coarse filter
+# Stage 2: full 5-component scoring in parallel
+#
+# Usage:
+#   python fast_ranker.py
+#   python fast_ranker.py --top_n 50 --shortlist 3000
 
 import argparse
 import json
@@ -30,12 +17,13 @@ BASE_DIR = SRC_DIR.parent
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
-from candidate_loader import load_candidates, fast_disqualify
-from coarse_scorer import coarse_rank
-from corpus_vectorizer import CorpusVectorizer
-from stage2_scorer import full_score_parallel
-from result_printer import print_results
-from jd_schema import JD
+from loader import load_candidates, fast_disqualify
+from coarse import coarse_rank
+from vectorizer import CorpusVectorizer
+from scorer import full_score_parallel
+from printer import print_results
+from overlap import check_overlap
+from jd import JD
 
 SHORTLIST_SIZE = None
 DEFAULT_TOP_N  = 100
@@ -49,7 +37,7 @@ def run_pipeline(
     output_path: Path | None = None,
     n_workers: int | None = None,
 ) -> list[dict]:
-    """Full two-stage ranking pipeline."""
+    # full pipeline: load -> disqualify -> tfidf -> coarse rank -> full score
     t0 = time.perf_counter()
 
     print(f"[Stage 1] Loading candidates from {candidates_path} ...", flush=True)
@@ -57,27 +45,23 @@ def run_pipeline(
     n_total = len(all_candidates)
     print(f"  Loaded {n_total:,} candidates  ({time.perf_counter()-t0:.1f}s)", flush=True)
 
-    # Build TF-IDF on the FULL corpus before filtering so IDF is computed
-    # across all 100k candidates (not just the ~23k survivors), giving
-    # meaningful term rarity weights that distinguish candidates.
+    # drop obvious rejects before building the TF-IDF index
     t1 = time.perf_counter()
-    print(f"  Building TF-IDF index on full corpus of {n_total:,} ...", flush=True)
-    cv = CorpusVectorizer()
-    cv.fit(all_candidates)
-    jd_text = jd.get("raw_text_for_bm25", "")
-    tfidf_all = cv.score_all(jd_text)   # array aligned with all_candidates
-    print(f"  TF-IDF done  ({time.perf_counter()-t1:.1f}s)", flush=True)
-
-    # Hard disqualify — preserve each survivor's tfidf score by original index
-    t2 = time.perf_counter()
-    survived_pairs = [(i, c) for i, c in enumerate(all_candidates) if not fast_disqualify(c)]
-    survived       = [c for _, c in survived_pairs]
-    survived_tfidf = [float(tfidf_all[i]) for i, _ in survived_pairs]
+    survived = [c for c in all_candidates if not fast_disqualify(c)]
     print(
         f"  Hard-disqualified {n_total - len(survived):,} | {len(survived):,} remain"
-        f"  ({time.perf_counter()-t2:.1f}s)",
+        f"  ({time.perf_counter()-t1:.1f}s)",
         flush=True,
     )
+
+    # build TF-IDF on survivors only so we don't waste time on rejects
+    t2 = time.perf_counter()
+    print(f"  Building TF-IDF index on {len(survived):,} survivors ...", flush=True)
+    cv = CorpusVectorizer()
+    cv.fit(survived)
+    jd_text = jd.get("raw_text_for_bm25", "")
+    survived_tfidf = [float(x) for x in cv.score_all(jd_text)]
+    print(f"  TF-IDF done  ({time.perf_counter()-t2:.1f}s)", flush=True)
 
     t3 = time.perf_counter()
     print(f"  Coarse scoring {len(survived):,} candidates ...", flush=True)
@@ -107,6 +91,24 @@ def run_pipeline(
 
     summary_path = output_path.with_suffix(".txt")
     print_results(top_results, summary_path=summary_path)
+
+    # run overlap check if the disqualified file is present
+    disqualified_path = candidates_path.with_name(
+        candidates_path.stem + "_disqualified" + candidates_path.suffix
+    )
+    if disqualified_path.exists():
+        print(f"\n[Overlap Check] Comparing ranked results against {disqualified_path.name} ...", flush=True)
+        overlaps = check_overlap(output_path, disqualified_path)
+        if not overlaps:
+            print("  No overlap — pipeline is consistent.", flush=True)
+        else:
+            print(f"  WARNING: {len(overlaps)} candidate(s) appear in both ranked and disqualified!", flush=True)
+    else:
+        print(
+            f"\n[Overlap Check] Skipped — {disqualified_path.name} not found next to input file.",
+            flush=True,
+        )
+
     return top_results
 
 
@@ -122,7 +124,7 @@ def _parse_args() -> argparse.Namespace:
 
 if __name__ == "__main__":
     args = _parse_args()
-    jd_raw_path = BASE_DIR / "jd_raw_text.txt"  # BASE_DIR = project root (set at module level)
+    jd_raw_path = BASE_DIR / "jd_raw_text.txt"
     print(f"Loading JD raw text from: {jd_raw_path}")
     with open(jd_raw_path, encoding="utf-8") as fh:
         JD["raw_text_for_bm25"] = fh.read()

@@ -1,18 +1,10 @@
-"""
-check_overlap.py — Verify that no candidate in the final ranked results was
-also hard-disqualified by disqualifier.py.
-
-This is a QA sanity-check tool. If overlap exists it means fast_ranker's
-inline rules (candidate_loader.fast_disqualify) are less strict than
-disqualifier.py's config-driven rules and a candidate slipped through.
-
-Usage:
-    cd src
-    python check_overlap.py
-    python check_overlap.py --ranked ../resources/top100_candidates.json
-    python check_overlap.py --ranked ../resources/top100_candidates.json \\
-                            --disqualified ../resources/candidates_disqualified.jsonl
-"""
+# QA check: make sure no disqualified candidate slipped into the ranked results.
+# If there's overlap it means loader.fast_disqualify is less strict than disqualifier.py.
+#
+# Usage:
+#   python overlap.py
+#   python overlap.py --ranked ../resources/top100_candidates.json
+#   python overlap.py --ranked ../resources/top100_candidates.json --disqualified ../resources/candidates_disqualified.jsonl
 
 from __future__ import annotations
 
@@ -25,7 +17,7 @@ BASE_DIR = SRC_DIR.parent
 
 
 def load_disqualified_ids(jsonl_path: Path) -> set[str]:
-    """Stream-load candidates_disqualified.jsonl and return the set of candidate_ids."""
+    """Read candidates_disqualified.jsonl and return a set of candidate_ids."""
     ids: set[str] = set()
     with open(jsonl_path, encoding="utf-8") as fh:
         for line in fh:
@@ -46,12 +38,7 @@ def check_overlap(
     ranked_path: Path,
     disqualified_path: Path,
 ) -> list[dict]:
-    """
-    Return list of candidates that appear in both ranked results and disqualified.
-
-    Each entry has: candidate_id, rank, final_score, penalty_multiplier,
-    triggered_disqualifiers (from fast_ranker's scoring).
-    """
+    """Return candidates that appear in both ranked results and disqualified list."""
     with open(ranked_path, encoding="utf-8") as fh:
         ranked: list[dict] = json.load(fh)
 
