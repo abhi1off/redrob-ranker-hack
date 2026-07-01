@@ -14,21 +14,9 @@ Put `candidates.jsonl` in `resources/` (git-ignored).
 
 ---
 
-## Two ways to run
+## How to run
 
-### Option A — small batch
-
-Pre-filter with rule-based disqualification, then score:
-
-```bash
-cd src
-python disqualifier.py   # splits candidates.jsonl → qualified / disqualified
-python match.py          # scores qualified candidates, outputs scored_candidates.json
-```
-
-### Option B — fast 100k ranker (recommended)
-
-Two-stage pipeline, reads directly from `candidates.jsonl`:
+Two-stage pipeline, reads directly from `resources/candidates.jsonl`:
 
 ```bash
 cd src
@@ -37,13 +25,13 @@ python fast_ranker.py
 
 Common flags:
 ```bash
-python fast_ranker.py --top_n 50 --shortlist 3000   # faster, slightly lower recall
-python fast_ranker.py --workers 2                    # limit CPU usage
+python fast_ranker.py --top_n 50                                 # return top 50
+python fast_ranker.py --candidates path/to/candidates.jsonl      # custom input path
 ```
 
 Outputs:
 - `resources/top100_candidates.json` — full results
-- `resources/top100_candidates.txt` — readable summary
+- `resources/top100_candidates.csv` — readable summary
 
 **How it works:**
 1. Drop obvious rejects (wrong city, bad title, <4 yrs exp) — cuts ~60% immediately
@@ -71,17 +59,6 @@ Disqualifier penalties multiply the raw score:
 
 ---
 
-## QA check
-
-If you ran both pipelines, verify no disqualified candidate snuck into the top results:
-
-```bash
-cd src
-python overlap.py
-```
-
----
-
 ## File overview
 
 ```
@@ -96,18 +73,11 @@ src/
   skill_extractor.py  regex skill signals from free text
   edu_validator.py    education credential sanity checks
   jd.py               structured JD definition
-  disqualifier.py     config-driven pre-filter (Option A)
-  rules.json          disqualification rule config
-  match.py            small-batch scoring script (Option A)
-  ranker.py           CLI wrapper for disqualifier
   overlap.py          QA: check ranked vs disqualified
 
 resources/
-  candidates.jsonl               input (git-ignored)
-  candidates_qualified.jsonl     output of disqualifier.py
-  candidates_disqualified.jsonl  rejected by disqualifier.py
-  scored_candidates.json         output of match.py
-  top100_candidates.json         output of fast_ranker.py
-  top100_candidates.txt          human-readable summary
+  candidates.jsonl           input (git-ignored)
+  top100_candidates.json     output of fast_ranker.py
+  top100_candidates.csv      human-readable summary
 ```
 

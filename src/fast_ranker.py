@@ -99,9 +99,6 @@ def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Fast two-stage candidate ranker (no LLM).")
     parser.add_argument("--candidates", type=Path, default=BASE_DIR / "resources" / "candidates.jsonl")
     parser.add_argument("--top_n", type=int, default=DEFAULT_TOP_N)
-    parser.add_argument("--shortlist", type=int, default=None)
-    parser.add_argument("--output", type=Path, default=None)
-    parser.add_argument("--workers", type=int, default=None)
     return parser.parse_args()
 
 
@@ -115,7 +112,4 @@ if __name__ == "__main__":
         candidates_path=args.candidates,
         jd=JD,
         top_n=args.top_n,
-        shortlist_size=args.shortlist or None,
-        output_path=args.output,
-        n_workers=args.workers,
     )

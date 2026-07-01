@@ -63,7 +63,7 @@ def write_csv_summary(results: list[dict], csv_path: Path) -> None:
             writer.writerow([
                 r["candidate_id"],
                 r["rank"],
-                f"{r['final_score']:.3f}",
+                f"{r['final_score']:.4f}",
                 _build_reasoning(r),
             ])
     print("================================================================================================")

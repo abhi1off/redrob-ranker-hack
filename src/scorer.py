@@ -58,7 +58,7 @@ def full_score_parallel(
         for fut in as_completed(futures):
             results.append(fut.result())
 
-    results.sort(key=lambda r: r["final_score"], reverse=True)
+    results.sort(key=lambda r: (-r["final_score"], int(r["candidate_id"].split("_")[1])))
     for rank, r in enumerate(results, start=1):
         r["rank"] = rank
 
