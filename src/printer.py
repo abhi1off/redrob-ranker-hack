@@ -66,4 +66,6 @@ def write_csv_summary(results: list[dict], csv_path: Path) -> None:
                 f"{r['final_score']:.3f}",
                 _build_reasoning(r),
             ])
+    print("================================================================================================")
     print(f"CSV written to: {csv_path}")
+    print("================================================================================================")

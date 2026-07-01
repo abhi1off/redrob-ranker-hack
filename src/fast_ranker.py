@@ -92,23 +92,6 @@ def run_pipeline(
     summary_path = output_path.with_suffix(".csv")
     write_csv_summary(top_results, summary_path)
 
-    # run overlap check if the disqualified file is present
-    disqualified_path = candidates_path.with_name(
-        candidates_path.stem + "_disqualified" + candidates_path.suffix
-    )
-    if disqualified_path.exists():
-        print(f"\n[Overlap Check] Comparing ranked results against {disqualified_path.name} ...", flush=True)
-        overlaps = check_overlap(output_path, disqualified_path)
-        if not overlaps:
-            print("  No overlap — pipeline is consistent.", flush=True)
-        else:
-            print(f"  WARNING: {len(overlaps)} candidate(s) appear in both ranked and disqualified!", flush=True)
-    else:
-        print(
-            f"\n[Overlap Check] Skipped — {disqualified_path.name} not found next to input file.",
-            flush=True,
-        )
-
     return top_results
 
 
