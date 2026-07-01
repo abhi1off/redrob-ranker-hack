@@ -7,7 +7,7 @@ from disqualifier import remove_disqualified_candidates
 def build_candidates(candidates_path: Path):
     print("starting build candidates...", candidates_path)
     
-    with open("src/disqualifier_conditions.json", "r") as f:
+    with open("src/rules.json", "r") as f:
         config = json.load(f)
     
     remove_disqualified_candidates(str(candidates_path), config)
