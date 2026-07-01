@@ -21,7 +21,7 @@ from loader import load_candidates, fast_disqualify
 from coarse import coarse_rank
 from vectorizer import CorpusVectorizer
 from scorer import full_score_parallel
-from printer import print_results
+from printer import write_csv_summary
 from overlap import check_overlap
 from jd import JD
 
@@ -89,8 +89,8 @@ def run_pipeline(
         json.dump(top_results, fh, indent=2)
     print(f"Results saved to: {output_path}", flush=True)
 
-    summary_path = output_path.with_suffix(".txt")
-    print_results(top_results, summary_path=summary_path)
+    summary_path = output_path.with_suffix(".csv")
+    write_csv_summary(top_results, summary_path)
 
     # run overlap check if the disqualified file is present
     disqualified_path = candidates_path.with_name(

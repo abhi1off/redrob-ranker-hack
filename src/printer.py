@@ -1,70 +1,69 @@
-# Print ranked candidate results to console (and optionally a file).
-
 from __future__ import annotations
-import sys
+import csv
 from pathlib import Path
 
 
-def print_results(results: list[dict], summary_path: Path | None = None) -> None:
-    """Print a ranked summary with score breakdown per candidate."""
-    out_fh = open(summary_path, "w", encoding="utf-8") if summary_path else None
+def _build_reasoning(r: dict) -> str:
+    """Compact 1-line justification pulled from the same fields as the txt summary."""
+    det = r.get("details", {})
+    exp = det.get("experience_breakdown", {})
+    cs  = r.get("component_scores", {})
 
-    def _print(*args, **kwargs):
-        kwargs.pop("flush", None)
-        print(*args, **kwargs)
-        if out_fh:
-            print(*args, file=out_fh, **kwargs)
-    _print(f"\n{'='*80}")
-    _print(f"  TOP {len(results)} CANDIDATES")
-    _print(f"{'='*80}")
+    parts = []
 
-    for r in results:
-        cs    = r.get("component_scores", {})
-        det   = r.get("details", {})
-        exp   = det.get("experience_breakdown", {})
-        flags = ", ".join(r.get("triggered_disqualifiers", [])) or "none"
+    # Experience
+    yrs = exp.get("total_years")
+    ai_yrs = exp.get("applied_ai_years_estimate")
+    if yrs is not None:
+        exp_str = f"{yrs} yrs exp"
+        if ai_yrs is not None:
+            exp_str += f" ({ai_yrs} AI/ML)"
+        parts.append(exp_str)
 
-        # top matched skills, cap at 5 to keep output readable
-        matched_skills = [
-            f"{s['matched_via']} ({s['proficiency']}, {s['duration_months']}mo)"
-            for s in det.get("skill_breakdown", [])
-            if s.get("matched") and s.get("contribution", 0) > 0
-        ]
-        skills_str = ", ".join(matched_skills[:5]) or "none"
-        if len(matched_skills) > 5:
-            skills_str += f" +{len(matched_skills)-5} more"
+    # Top 2 matched skills only
+    matched_skills = [
+        s["matched_via"] for s in det.get("skill_breakdown", [])
+        if s.get("matched") and s.get("contribution", 0) > 0
+    ]
+    if matched_skills:
+        parts.append("skilled in " + ", ".join(matched_skills[:2]))
 
-        loc_reasons = " | ".join(det.get("location_reasons", [])) or "—"
+    # Location — take first reason, shortened
+    loc_reasons = det.get("location_reasons", [])
+    if loc_reasons:
+        loc = loc_reasons[0]
+        # keep it short: strip trailing parenthetical detail if too long
+        if len(loc) > 40:
+            loc = loc.split("(")[0].strip()
+        parts.append(loc.lower())
 
-        # Education validation — pulled from disqualifier_flags
-        edu_flag = det.get("disqualifier_flags", {}).get("suspicious_education", {})
-        if edu_flag.get("triggered"):
-            edu_str = f"SUSPICIOUS — {edu_flag.get('reason', 'unknown issue')}"
-        else:
-            edu_str = edu_flag.get("reason", "—")
+    # Education — only mention if suspicious (worth flagging)
+    edu_flag = det.get("disqualifier_flags", {}).get("suspicious_education", {})
+    if edu_flag.get("triggered"):
+        parts.append(f"education concern: {edu_flag.get('reason', 'unverified')}")
 
-        _print(
-            f"\n#{r['rank']:>3}  {r['candidate_id']}  →  score: {r['final_score']:.4f}"
-            f"  (penalty: ×{r['penalty_multiplier']:.2f})",
-        )
-        _print(
-            f"     Components — skill: {cs.get('skill_score', 0):.2f}  "
-            f"exp: {cs.get('experience_score', 0):.2f}  "
-            f"loc: {cs.get('location_score', 0):.2f}  "
-            f"text: {cs.get('text_similarity_score', 0):.2f}",
-        )
-        _print(
-            f"     Experience — {exp.get('total_years', '-')} yrs total | "
-            f"{exp.get('applied_ai_years_estimate', '-')} applied AI/ML yrs | "
-            f"hands-on score: {exp.get('hands_on_score', '-')}",
-        )
-        _print(f"     Skills matched — {skills_str}")
-        _print(f"     Location       — {loc_reasons}")
-        _print(f"     Education      — {edu_str}")
-        if flags != "none":
-            _print(f"     Penalties      — {flags}")
+    # Penalties
+    flags = r.get("triggered_disqualifiers", [])
+    if flags:
+        parts.append("penalized for " + ", ".join(flags[:2]))
 
-    _print(f"\n{'='*80}\n")
-    if out_fh:
-        out_fh.close()
-        print(f"Summary written to: {summary_path}", flush=True)
+    reasoning = "; ".join(parts)
+    # hard cap so it stays compact
+    if len(reasoning) > 180:
+        reasoning = reasoning[:177].rsplit(" ", 1)[0] + "..."
+    return reasoning
+
+
+def write_csv_summary(results: list[dict], csv_path: Path) -> None:
+    """Write ranked results as a single CSV: candidate_id,rank,score,reasoning"""
+    with open(csv_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(["candidate_id", "rank", "score", "reasoning"])
+        for r in results:
+            writer.writerow([
+                r["candidate_id"],
+                r["rank"],
+                f"{r['final_score']:.3f}",
+                _build_reasoning(r),
+            ])
+    print(f"CSV written to: {csv_path}")
